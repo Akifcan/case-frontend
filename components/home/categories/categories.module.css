@@ -5,6 +5,14 @@
   text-decoration: none;
   text-transform: capitalize;
   flex-shrink: 0;
+  cursor: pointer;
+  list-style: none;
+  color: var(--color-primary);
+}
+
+.card.active {
+  background-color: var(--color-primary);
+  color: white;
 }
 
 .categories {

@@ -10,10 +10,10 @@ export default function ProductCard({ product }: Readonly<{ product: ProductProp
       <div className={styles['product-image']}>
         <Image
           fill
+          sizes={'100%'}
           src={firstImage.src}
           alt={firstImage.altTag}
-          objectFit={'cover'}
-          objectPosition={'center'}
+          style={{ objectFit: 'cover' }}
         />
       </div>
       <div className={styles['product-detail-footer']}>

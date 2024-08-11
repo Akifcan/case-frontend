@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
 interface FetcherProps extends RequestInit {
-  body: any | null | undefined
+  body?: any | null | undefined
 }
 export default async function fetcher<T>(uri: string, request: FetcherProps) {
   const language = Cookies.get('i18n_redirected')

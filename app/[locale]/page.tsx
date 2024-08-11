@@ -6,11 +6,8 @@ import ProductCard from '@/components/product/product.card'
 import { ProductProps } from '@/components/product/product.types'
 import fetcher from '@/store/fetcher'
 import { useQuery } from '@tanstack/react-query'
-import { useTranslations } from 'next-intl'
 export default function Page() {
-  const t = useTranslations('menu')
-
-  const { error, data } = useQuery({
+  const { error, data, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       return await fetcher<{ products: ProductProps[]; totalPage: number }>('/product?page=1&limit=5', {
@@ -29,6 +26,7 @@ export default function Page() {
       <SearchInput />
       <Categories />
       {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
+      {isLoading && <p>Ürünler yükleniyor...</p>}
       {data && (
         <div className="grid">
           {data.products.map((product) => {

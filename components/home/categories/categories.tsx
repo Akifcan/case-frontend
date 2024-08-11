@@ -7,8 +7,10 @@ import Alert from '@/components/alert/alert'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import CloseIcon from './Icons/close.icon'
+import { useQueryParam } from '@/hooks/use-query-param.hook'
 
 export default function Categories() {
+  const { getQueries } = useQueryParam()
   const { error, data, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
@@ -31,7 +33,8 @@ export default function Categories() {
   const handleCategory = (category: string) => {
     if (throttler.current) {
       setSelectedCategory(category)
-      router.push(`/?category=${category}`)
+      router.push(`/${getQueries([{ key: 'category', value: category }])}`)
+
       throttler.current = false
       setTimeout(() => {
         throttler.current = true

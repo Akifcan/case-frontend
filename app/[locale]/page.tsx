@@ -19,6 +19,7 @@ export default function Page() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
+          keyword: searchParams.get('keyword') ?? undefined,
           category: searchParams.get('category') ?? undefined,
           currency: 'tl',
         },

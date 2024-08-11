@@ -46,12 +46,12 @@ export default function Categories() {
   const handleInitialCategory = () => {
     const category = searchParams.get('category')
     if (!category) {
-      return
+      return setSelectedCategory(undefined)
     }
     setSelectedCategory(category)
   }
 
-  useEffect(handleInitialCategory, [])
+  useEffect(handleInitialCategory, [searchParams])
 
   return (
     <ul className={styles.categories}>

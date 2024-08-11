@@ -37,16 +37,16 @@ export default function Page() {
       <Categories />
       {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
       {isLoading && <p>Ürünler yükleniyor...</p>}
-      {data?.products && (
+      {data && (
         <>
-          {data.products.length > 0 && (
+          {data?.products.length > 0 && (
             <div className="grid">
               {data.products.map((product) => {
                 return <ProductCard key={product.id} product={product} />
               })}
             </div>
           )}
-          {data.products.length < 0 && <Alert type="info" message="Ürün bulunamadı" />}
+          {data?.products.length <= 0 && <Alert type="info" message="Ürün bulunamadı" />}
         </>
       )}
     </main>

@@ -18,7 +18,6 @@ export default function Language() {
 
   return (
     <>
-      {locale}
       <select value={locale} onChange={handleLocale} className={styles['currency']}>
         <option value={'tr'}>Turkish</option>
         <option value={'en'}>English</option>

@@ -2,6 +2,7 @@ import styles from './product.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ProductProps } from './product.types'
+import { CurrencyProps, currencySymbols } from '@/store/features/currency/currency.types'
 export default function ProductCard({ product }: Readonly<{ product: ProductProps }>) {
   const firstImage = product.images[0]
 
@@ -26,8 +27,8 @@ export default function ProductCard({ product }: Readonly<{ product: ProductProp
             </s>
           )}
           <span>
-            {product?.discountPrice && product.price}
-            {product.currency}
+            {product?.discountPrice || product.price}
+            {currencySymbols[product.currency]}
           </span>
         </div>
       </div>

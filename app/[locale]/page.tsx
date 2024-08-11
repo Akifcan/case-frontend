@@ -5,12 +5,16 @@ import SearchInput from '@/components/home/search/search.input'
 import ProductCard from '@/components/product/product.card'
 import { ProductProps } from '@/components/product/product.types'
 import fetcher from '@/store/fetcher'
+import { useAppSelector } from '@/store/store'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
+import Cookies from 'js-cookie'
 
 export default function Page() {
   const searchParams = useSearchParams()
+  const currency = useAppSelector((state) => state.currency.currency)
+
   const { error, data, isLoading, refetch } = useQuery({
     enabled: false,
     queryKey: ['products'],
@@ -21,7 +25,7 @@ export default function Page() {
         body: {
           keyword: searchParams.get('keyword') ?? undefined,
           category: searchParams.get('category') ?? undefined,
-          currency: 'tl',
+          currency: Cookies.get('APP_CURRENCY') ?? currency,
         },
       })
     },
@@ -29,7 +33,7 @@ export default function Page() {
 
   useEffect(() => {
     refetch()
-  }, [searchParams])
+  }, [searchParams, currency])
 
   return (
     <main className="flex column mt-1" style={{ gap: '1rem' }}>

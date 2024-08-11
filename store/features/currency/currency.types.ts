@@ -5,3 +5,7 @@ export const currencySymbols: Record<CurrencyProps, string> = {
   tl: '₺',
   euro: '€',
 }
+
+export interface CurrencyState {
+  currency: CurrencyProps | undefined
+}

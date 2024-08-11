@@ -2,7 +2,7 @@
 import styles from './header.module.css'
 import { useAppDispatch, useAppSelector } from '@/store/store'
 import { ChangeEvent, useEffect } from 'react'
-import { setCurrency } from '@/store/features/currency/currency-slice'
+import { setCurrency } from '@/store/features/currency/currency.slice'
 import { CurrencyProps } from '@/store/features/currency/currency.types'
 import Cookies from 'js-cookie'
 

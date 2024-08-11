@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
-import currencyReducer from '@/store/features/currency/currency-slice'
+import currencyReducer from '@/store/features/currency/currency.slice'
+import basketReducer from '@/store/features/basket/basket.slice'
 
 export const store = configureStore({
-  reducer: { currency: currencyReducer },
+  reducer: { currency: currencyReducer, basket: basketReducer },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 })
 

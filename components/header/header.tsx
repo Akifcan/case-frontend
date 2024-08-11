@@ -14,6 +14,9 @@ export default function Header() {
 
   const handleLocale = () => {
     Cookies.set('NEXT_LOCALE', locale)
+    if (!Cookies.get('VISITOR_ID')) {
+      Cookies.set('VISITOR_ID', Math.floor(Math.random()).toString())
+    }
   }
 
   useEffect(handleLocale, [])

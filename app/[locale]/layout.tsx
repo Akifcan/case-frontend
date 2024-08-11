@@ -18,6 +18,7 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const messages = await getMessages()
+
   return (
     <ReduxProvider>
       <html lang={locale}>

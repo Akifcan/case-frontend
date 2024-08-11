@@ -4,7 +4,7 @@ interface FetcherProps extends RequestInit {
   body?: any | null | undefined
 }
 export default async function fetcher<T>(uri: string, request: FetcherProps) {
-  const language = Cookies.get('i18n_redirected')
+  const language = Cookies.get('NEXT_LOCALE')
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${uri}`, {
     ...request,
     headers: {

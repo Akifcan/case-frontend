@@ -42,7 +42,6 @@ export default function Page() {
   const handlePageChange = (page: number) => {
     router.push(`/${getQueries([{ key: 'page', value: page.toString() }])}`)
   }
-
   useEffect(() => {
     refetch()
   }, [searchParams, currency])

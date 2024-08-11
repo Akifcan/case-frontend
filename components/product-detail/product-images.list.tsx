@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import styles from './product-detail.module.css'
 import { useEffect, useRef, useState } from 'react'
+import { ProductImageProps, ProductProps } from '../product/product.types'
 
-export default function ProductImagesList() {
+export default function ProductImagesList({ product }: Readonly<{ product: ProductProps }>) {
   const parentRef = useRef<HTMLDivElement>(null)
   const childRef = useRef<HTMLDivElement>(null)
+  const [thumbnail, setThumbnail] = useState<ProductImageProps>(product.images[0])
 
   const resize = () => {
     const el = childRef.current
@@ -29,107 +31,30 @@ export default function ProductImagesList() {
 
   return (
     <div ref={parentRef} className={'flex column flex-1 overflow-hidden'}>
-      <h1>Product Name</h1>
+      <h1>{product.name}</h1>
+      <hr />
       <div className={styles['product-thumbnail']}>
         <Image
           fill
           sizes={'100%'}
-          src={
-            'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-          }
-          alt={'firstImage.altTag'}
+          src={thumbnail.src}
+          alt={thumbnail.altTag}
           style={{ objectFit: 'contain' }}
         />
       </div>
       <div ref={childRef} className={styles['product-image-list']}>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={[styles['product-image-card']].join(' ')}>
-          <Image
-            fill
-            sizes={'100%'}
-            src={
-              'https://images.unsplash.com/photo-1659423269449-361b455d3cb5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D'
-            }
-            alt={'firstImage.altTag'}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
+        {product.images.map((image) => {
+          return (
+            <div
+              aria-label="Click image for view"
+              onClick={() => setThumbnail(image)}
+              key={image.src}
+              className={[styles['product-image-card']].join(' ')}
+            >
+              <Image fill sizes={'100%'} src={image.src} alt={image.altTag} style={{ objectFit: 'cover' }} />
+            </div>
+          )
+        })}
       </div>
     </div>
   )

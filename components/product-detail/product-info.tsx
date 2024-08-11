@@ -1,10 +1,12 @@
+import { currencySymbols } from '@/store/features/currency/currency.types'
 import Basket2 from '../header/icons/basket2'
 import BuyIcon from '../header/icons/buy.icon'
+import { ProductProps } from '../product/product.types'
 import styles from './product-detail.module.css'
-import toast from 'react-hot-toast'
-export default function ProductInfo() {
+import toast, { Toaster } from 'react-hot-toast'
+export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const handleRedirectToBasket = () => {
-    toast('Here is your toast.')
+    toast('Here is your toast.', { position: 'top-right' })
   }
 
   const handleBasket = () => {
@@ -13,15 +15,21 @@ export default function ProductInfo() {
 
   return (
     <div className={['flex column flex-1'].join(' ')}>
-      <h2>Product Name</h2>
+      <Toaster />
+      <h2>{product.name}</h2>
       <hr />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus accusantium itaque est distinctio
-        voluptates voluptatem iste deserunt doloremque nihil neque.
-      </p>
+      <p>{product.description}</p>
       <div className={['flex align-items-center wrap', styles['price']].join(' ')} style={{ gap: '.3rem' }}>
-        <s>200₺</s>
-        <p>20₺</p>
+        {product.discountPrice && (
+          <s>
+            {product.price}
+            {product.currency}
+          </s>
+        )}
+        <span>
+          {product?.discountPrice || product.price}
+          {currencySymbols[product.currency]}
+        </span>{' '}
       </div>
       <div className={['flex align-items-center wrap', styles['price']].join(' ')} style={{ gap: '.3rem' }}>
         <button onClick={handleRedirectToBasket} className={styles['purchase-button']}>

@@ -15,7 +15,7 @@ export default function Language() {
   const handleLocale = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as Locale
     Cookies.set('NEXT_LOCALE', newLocale)
-    router.replace(`${pathname}${getQueries([{ key: 'category', value: '' }])}`, { locale: newLocale })
+    router.replace(`${pathname}`, { locale: newLocale })
   }
 
   return (

@@ -9,7 +9,6 @@ import { useAppSelector } from '@/store/store'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-import Cookies from 'js-cookie'
 import Pagination from '@/components/home/pagination/pagination'
 import { useQueryParam } from '@/hooks/use-query-param.hook'
 import { useRouter } from '@/i18n.config'
@@ -46,7 +45,7 @@ export default function Page() {
   }
   useEffect(() => {
     refetch()
-  }, [searchParams, currency])
+  }, [searchParams, currency, router])
 
   return (
     <main className="flex column mt-1" style={{ gap: '1rem' }}>

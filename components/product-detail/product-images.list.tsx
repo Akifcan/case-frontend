@@ -38,7 +38,6 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
       <div className={styles['product-thumbnail']}>
         <Image
           priority={true}
-          key={product.images[0].src}
           fill
           sizes={'100%'}
           src={thumbnail?.src ?? product.images[0].src}

@@ -1,8 +1,8 @@
 import styles from './product.module.css'
-import Link from 'next/link'
 import Image from 'next/image'
 import { ProductProps } from './product.types'
 import { currencySymbols } from '@/store/features/currency/currency.types'
+import { Link } from '@/i18n.config'
 export default function ProductCard({ product }: Readonly<{ product: ProductProps }>) {
   const firstImage = product.images[0]
 

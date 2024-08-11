@@ -35,6 +35,7 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
       <hr />
       <div className={styles['product-thumbnail']}>
         <Image
+          key={product.id}
           fill
           sizes={'100%'}
           src={thumbnail.src}

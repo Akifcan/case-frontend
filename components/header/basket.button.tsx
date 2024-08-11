@@ -1,13 +1,12 @@
 import BasketIcon from './icons/basket.icon'
 import styles from './header.module.css'
 import Link from 'next/link'
-import { useAppSelector } from '@/store/store'
 import { useQuery } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
-import Cookies from 'js-cookie'
+import { useUser } from '@/hooks/user.hook'
 
 export default function BasketButton() {
-  const currency = useAppSelector((state) => state.currency.currency)
+  const { currency, visitorId } = useUser()
 
   const { data } = useQuery({
     queryKey: ['total-basket-item'],
@@ -16,8 +15,8 @@ export default function BasketButton() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
-          visitorId: Number(Cookies.get('VISITOR_ID')),
-          currency: Cookies.get('APP_CURRENCY') ?? currency,
+          visitorId,
+          currency,
         },
       })
     },

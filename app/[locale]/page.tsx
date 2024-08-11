@@ -13,12 +13,14 @@ import Cookies from 'js-cookie'
 import Pagination from '@/components/home/pagination/pagination'
 import { useQueryParam } from '@/hooks/use-query-param.hook'
 import { useRouter } from '@/i18n.config'
+import { useUser } from '@/hooks/user.hook'
 
 export default function Page() {
   const searchParams = useSearchParams()
   const currency = useAppSelector((state) => state.currency.currency)
   const { getQueries } = useQueryParam()
   const router = useRouter()
+  const user = useUser()
 
   const { error, data, isLoading, refetch } = useQuery({
     enabled: false,
@@ -32,7 +34,7 @@ export default function Page() {
           body: {
             keyword: searchParams.get('keyword') ?? undefined,
             category: searchParams.get('category') ?? undefined,
-            currency: Cookies.get('APP_CURRENCY') ?? currency,
+            currency: user.currency,
           },
         },
       )

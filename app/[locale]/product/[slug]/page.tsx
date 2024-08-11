@@ -10,10 +10,12 @@ import { ProductProps } from '@/components/product/product.types'
 import { useParams } from 'next/navigation'
 import Alert from '@/components/alert/alert'
 import { useEffect } from 'react'
+import { useUser } from '@/hooks/user.hook'
 
 export default function Page() {
   const currency = useAppSelector((state) => state.currency.currency)
   const { slug } = useParams()
+  const { visitorId, currency: userCurrency } = useUser()
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['product'],
@@ -22,7 +24,8 @@ export default function Page() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
-          currency: Cookies.get('APP_CURRENCY') ?? currency,
+          visitorId,
+          currency: userCurrency,
         },
       })
     },

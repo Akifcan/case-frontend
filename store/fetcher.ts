@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 interface FetcherProps extends RequestInit {
   body: any | null | undefined
 }
-export default async function fetcher(uri: string, request: FetcherProps) {
+export default async function fetcher<T>(uri: string, request: FetcherProps) {
   const language = Cookies.get('i18n_redirected')
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${uri}`, {
     ...request,
@@ -14,5 +14,5 @@ export default async function fetcher(uri: string, request: FetcherProps) {
     },
     body: request.body ? JSON.stringify(request.body) : undefined,
   })
-  return await response.json()
+  return (await response.json()) as T
 }

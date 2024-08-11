@@ -21,6 +21,10 @@
   flex-wrap: wrap;
 }
 
+.mt-1 {
+  margin-block: 1rem;
+}
+
 .mt-2 {
   margin-block: 2rem;
 }

@@ -2,12 +2,12 @@ import styles from './product.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ProductProps } from './product.types'
-import { CurrencyProps, currencySymbols } from '@/store/features/currency/currency.types'
+import { currencySymbols } from '@/store/features/currency/currency.types'
 export default function ProductCard({ product }: Readonly<{ product: ProductProps }>) {
   const firstImage = product.images[0]
 
   return (
-    <Link href={''} as={'div'} className="flex column text-decoration-none" style={{ gap: '0' }}>
+    <Link href={`/product/${product.slug}`} className="flex column text-decoration-none" style={{ gap: '0' }}>
       <div className={styles['product-image']}>
         <Image
           fill

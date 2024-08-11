@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl'
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { Link } from '@/i18n.config'
+import BasketButton from './basket.button'
 
 export default function Header() {
   const t = useTranslations('menu')
@@ -27,6 +28,7 @@ export default function Header() {
         <Link href="/">{t('login')}</Link>
         <Currency />
         <Language />
+        <BasketButton />
       </nav>
     </header>
   )

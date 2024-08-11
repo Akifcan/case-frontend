@@ -14,3 +14,21 @@
     display: none;
   }
 }
+
+.basket-button {
+  cursor: pointer;
+  position: relative;
+}
+
+.basket-button-badge {
+  position: absolute;
+  background-color: var(--color-primary);
+  display: grid;
+  place-items: center;
+  color: white;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  right: 0;
+  top: 0;
+}

@@ -51,6 +51,14 @@
   padding: 1rem;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
 @media (max-width: 1000px) {
   .grid {
     grid-template-columns: 1fr 1fr;

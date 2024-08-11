@@ -6,7 +6,7 @@ import { ProductImageProps, ProductProps } from '../product/product.types'
 export default function ProductImagesList({ product }: Readonly<{ product: ProductProps }>) {
   const parentRef = useRef<HTMLDivElement>(null)
   const childRef = useRef<HTMLDivElement>(null)
-  const [thumbnail, setThumbnail] = useState<ProductImageProps>(product.images[0])
+  const [thumbnail, setThumbnail] = useState<ProductImageProps>()
 
   const resize = () => {
     const el = childRef.current
@@ -26,7 +26,9 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
   useEffect(() => {
     resize()
     window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('resize', resize)
+    }
   }, [])
 
   return (
@@ -35,11 +37,12 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
       <hr />
       <div className={styles['product-thumbnail']}>
         <Image
-          key={product.id}
+          priority={true}
+          key={product.images[0].src}
           fill
           sizes={'100%'}
-          src={thumbnail.src}
-          alt={thumbnail.altTag}
+          src={thumbnail?.src ?? product.images[0].src}
+          alt={thumbnail?.altTag ?? product.images[0].src}
           style={{ objectFit: 'contain' }}
         />
       </div>
@@ -52,7 +55,14 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
               key={image.src}
               className={[styles['product-image-card']].join(' ')}
             >
-              <Image fill sizes={'100%'} src={image.src} alt={image.altTag} style={{ objectFit: 'cover' }} />
+              <Image
+                key={image.src}
+                fill
+                sizes={'100%'}
+                src={image.src}
+                alt={image.altTag}
+                style={{ objectFit: 'cover' }}
+              />
             </div>
           )
         })}

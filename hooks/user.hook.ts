@@ -13,8 +13,15 @@ export const useUser = () => {
     setVisitorId(Number(Cookies.get('VISITOR_ID')))
   }, [])
 
+  const handleVisitorId = () => {
+    if (!Cookies.get('VISITOR_ID')) {
+      Cookies.set('VISITOR_ID', `${Math.floor(Math.random() * 99999)}`)
+    }
+    return Number(Cookies.get('VISITOR_ID'))
+  }
+
   return {
-    visitorId,
+    visitorId: handleVisitorId(),
     currency: Cookies.get('APP_CURRENCY') ?? currency,
   }
 }

@@ -15,7 +15,7 @@ export default function BasketButton() {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
-          visitorId,
+          visitorId: visitorId,
           currency,
         },
       })

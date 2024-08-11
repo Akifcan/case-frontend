@@ -14,4 +14,7 @@ export interface ProductProps {
   discountPrice?: string
   currency: CurrencyProps
   images: ProductImageProps[]
+  product: {
+    id: number
+  }
 }

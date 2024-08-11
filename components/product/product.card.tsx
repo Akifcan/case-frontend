@@ -1,18 +1,34 @@
 import styles from './product.module.css'
 import Link from 'next/link'
-export default function ProductCard() {
+import Image from 'next/image'
+import { ProductProps } from './product.types'
+export default function ProductCard({ product }: Readonly<{ product: ProductProps }>) {
+  const firstImage = product.images[0]
+
   return (
     <Link href={''} as={'div'} className="flex column text-decoration-none" style={{ gap: '0' }}>
-      <img
-        className={styles['product-image']}
-        src="https://images.unsplash.com/photo-1720048171731-15b3d9d5473f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt=""
-      />
+      <div className={styles['product-image']}>
+        <Image
+          fill
+          src={firstImage.src}
+          alt={firstImage.altTag}
+          objectFit={'cover'}
+          objectPosition={'center'}
+        />
+      </div>
       <div className={styles['product-detail-footer']}>
-        <h3>Product Name</h3>
+        <h3>{product.name}</h3>
         <div className="flex" style={{ gap: '.4rem' }}>
-          <s>200₺</s>
-          <span>200₺</span>
+          {product.discountPrice && (
+            <s>
+              {product.price}
+              {product.currency}
+            </s>
+          )}
+          <span>
+            {product?.discountPrice && product.price}
+            {product.currency}
+          </span>
         </div>
       </div>
     </Link>

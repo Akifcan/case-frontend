@@ -1,4 +1,5 @@
 'use client'
+import Alert from '@/components/alert/alert'
 import Categories from '@/components/home/categories/categories'
 import SearchInput from '@/components/home/search/search.input'
 import ProductCard from '@/components/product/product.card'
@@ -12,7 +13,7 @@ export default function Page() {
   const { error, data } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      return await fetcher<{ products: ProductProps; totalPage: number }>('/product?page=1&limit=5', {
+      return await fetcher<{ products: ProductProps[]; totalPage: number }>('/product?page=1&limit=5', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
@@ -27,14 +28,12 @@ export default function Page() {
     <main className="flex column mt-1" style={{ gap: '1rem' }}>
       <SearchInput />
       <Categories />
+      {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
       {data && (
         <div className="grid">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {data.products.map((product) => {
+            return <ProductCard key={product.id} product={product} />
+          })}
         </div>
       )}
     </main>

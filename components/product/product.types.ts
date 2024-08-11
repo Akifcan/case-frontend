@@ -4,7 +4,7 @@ export interface ProductProps {
   description: string
   slug: string
   price: string
-  discountPrice: string
+  discountPrice?: string
   currency: string
   images: {
     altTag: string

@@ -1,0 +1,14 @@
+.alert {
+  text-transform: capitalize;
+  padding: 0.6rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.alert.error {
+  background-color: crimson;
+}
+
+.alert.info {
+  background-color: darkblue;
+}

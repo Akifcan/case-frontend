@@ -6,20 +6,29 @@ import ProductCard from '@/components/product/product.card'
 import { ProductProps } from '@/components/product/product.types'
 import fetcher from '@/store/fetcher'
 import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+
 export default function Page() {
-  const { error, data, isLoading } = useQuery({
+  const searchParams = useSearchParams()
+  const { error, data, isLoading, refetch } = useQuery({
+    enabled: false,
     queryKey: ['products'],
     queryFn: async () => {
       return await fetcher<{ products: ProductProps[]; totalPage: number }>('/product?page=1&limit=5', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: {
-          category: 2,
+          category: searchParams.get('category') ?? undefined,
           currency: 'tl',
         },
       })
     },
   })
+
+  useEffect(() => {
+    refetch()
+  }, [searchParams])
 
   return (
     <main className="flex column mt-1" style={{ gap: '1rem' }}>
@@ -27,12 +36,17 @@ export default function Page() {
       <Categories />
       {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
       {isLoading && <p>Ürünler yükleniyor...</p>}
-      {data && (
-        <div className="grid">
-          {data.products.map((product) => {
-            return <ProductCard key={product.id} product={product} />
-          })}
-        </div>
+      {data?.products && (
+        <>
+          {data.products.length > 0 && (
+            <div className="grid">
+              {data.products.map((product) => {
+                return <ProductCard key={product.id} product={product} />
+              })}
+            </div>
+          )}
+          {data.products.length < 0 && <Alert type="info" message="Ürün bulunamadı" />}
+        </>
       )}
     </main>
   )

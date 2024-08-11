@@ -39,6 +39,14 @@
   text-decoration: none;
 }
 
+.p-half {
+  padding: 0.5rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
 @media (max-width: 1000px) {
   .grid {
     grid-template-columns: 1fr 1fr;

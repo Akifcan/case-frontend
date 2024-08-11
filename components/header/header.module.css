@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.currency {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 1000px) {
+  .header nav {
+    display: none;
+  }
+}

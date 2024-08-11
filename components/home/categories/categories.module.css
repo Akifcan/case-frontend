@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.categories {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  overflow-y: auto;
+}

@@ -15,7 +15,12 @@ export default function SearchInput() {
     clearTimeout(debounce.current)
     debounce.current = setTimeout(() => {
       const keyword = inputRef.current?.value
-      router.push(`/${getQueries([{ key: 'keyword', value: keyword ?? '' }])}`)
+      router.push(
+        `/${getQueries([
+          { key: 'page', value: '1' },
+          { key: 'keyword', value: keyword ?? '' },
+        ])}`,
+      )
     }, 500)
   }
 

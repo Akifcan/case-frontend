@@ -10,26 +10,38 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
+import Pagination from '@/components/home/pagination/pagination'
+import { useQueryParam } from '@/hooks/use-query-param.hook'
+import { useRouter } from '@/i18n.config'
 
 export default function Page() {
   const searchParams = useSearchParams()
   const currency = useAppSelector((state) => state.currency.currency)
+  const { getQueries } = useQueryParam()
+  const router = useRouter()
 
   const { error, data, isLoading, refetch } = useQuery({
     enabled: false,
     queryKey: ['products'],
     queryFn: async () => {
-      return await fetcher<{ products: ProductProps[]; totalPage: number }>('/product?page=1&limit=5', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: {
-          keyword: searchParams.get('keyword') ?? undefined,
-          category: searchParams.get('category') ?? undefined,
-          currency: Cookies.get('APP_CURRENCY') ?? currency,
+      return await fetcher<{ products: ProductProps[]; totalPage: number }>(
+        `/product?page=${searchParams.get('page') ?? 1}&limit=3`,
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: {
+            keyword: searchParams.get('keyword') ?? undefined,
+            category: searchParams.get('category') ?? undefined,
+            currency: Cookies.get('APP_CURRENCY') ?? currency,
+          },
         },
-      })
+      )
     },
   })
+
+  const handlePageChange = (page: number) => {
+    router.push(`/${getQueries([{ key: 'page', value: page.toString() }])}`)
+  }
 
   useEffect(() => {
     refetch()
@@ -43,14 +55,19 @@ export default function Page() {
       {isLoading && <p>Ürünler yükleniyor...</p>}
       {data && (
         <>
-          {data?.products.length > 0 && (
-            <div className="grid">
-              {data.products.map((product) => {
-                return <ProductCard key={product.id} product={product} />
-              })}
+          {data?.products?.length > 0 && (
+            <div className="flex column">
+              <section className="grid">
+                {data.products.map((product) => {
+                  return <ProductCard key={product.id} product={product} />
+                })}
+              </section>
+              <div className="flex align-items-center justify-content-center">
+                <Pagination onChange={handlePageChange} totalPages={data.totalPage} />
+              </div>
             </div>
           )}
-          {data?.products.length <= 0 && <Alert type="info" message="Ürün bulunamadı" />}
+          {data?.products?.length <= 0 && <Alert type="info" message="Ürün bulunamadı" />}
         </>
       )}
     </main>

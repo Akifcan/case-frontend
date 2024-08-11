@@ -27,14 +27,19 @@ export default function Categories() {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
 
   const handleClearCategorySelection = () => {
-    router.push('/')
+    router.push('/?page=1')
     setSelectedCategory(undefined)
   }
 
   const handleCategory = (category: string) => {
     if (throttler.current) {
       setSelectedCategory(category)
-      router.push(`/${getQueries([{ key: 'category', value: category }])}`)
+      router.push(
+        `/${getQueries([
+          { key: 'category', value: category },
+          { key: 'page', value: '1' },
+        ])}`,
+      )
 
       throttler.current = false
       setTimeout(() => {

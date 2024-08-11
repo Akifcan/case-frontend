@@ -9,5 +9,5 @@ export const useQueryParam = () => {
     return '?' + x.toString()
   }
 
-  return { getQueries }
+  return { getQueries, searchParams }
 }

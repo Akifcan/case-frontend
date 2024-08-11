@@ -8,7 +8,6 @@ export default function SearchInput() {
   const debounce = useRef<NodeJS.Timeout>()
   const [keyword, setKeyword] = useState<string | undefined>(undefined)
   const router = useRouter()
-  const isInitialized = useRef(false)
 
   const { getQueries } = useQueryParam()
 

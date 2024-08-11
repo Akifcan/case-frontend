@@ -4,6 +4,7 @@ import ReduxProvider from '@/store/redux.provider'
 import Header from '@/components/header/header'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { useEffect } from 'react'
 
 export const metadata: Metadata = {
   title: 'Shop',

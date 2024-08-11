@@ -4,13 +4,14 @@ import fetcher from '@/store/fetcher'
 import { useQuery } from '@tanstack/react-query'
 import { CategoryProps } from './category.types'
 import Alert from '@/components/alert/alert'
-import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CloseIcon from './Icons/close.icon'
 import { useQueryParam } from '@/hooks/use-query-param.hook'
+import { useRouter } from '@/i18n.config'
 
 export default function Categories() {
-  const { getQueries } = useQueryParam()
+  const { getQueries, searchParams } = useQueryParam()
+
   const { error, data, isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
@@ -41,6 +42,16 @@ export default function Categories() {
       }, 500)
     }
   }
+
+  const handleInitialCategory = () => {
+    const category = searchParams.get('category')
+    if (!category) {
+      return
+    }
+    setSelectedCategory(category)
+  }
+
+  useEffect(handleInitialCategory, [])
 
   return (
     <ul className={styles.categories}>

@@ -6,4 +6,5 @@ export interface UserProps {
 
 export interface UserState {
   user?: UserProps
+  loggedIn?: boolean
 }

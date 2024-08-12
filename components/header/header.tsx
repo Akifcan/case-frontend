@@ -7,10 +7,12 @@ import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { Link } from '@/i18n.config'
 import BasketButton from './basket.button'
+import { useUser } from '@/hooks/user.hook'
 
 export default function Header() {
   const t = useTranslations('menu')
   const locale = useLocale()
+  const { user } = useUser()
 
   const handleLocale = () => {
     Cookies.set('NEXT_LOCALE', locale)
@@ -25,7 +27,8 @@ export default function Header() {
       </Link>
       <nav className="flex wrap align-items-center">
         <Link href="/">{t('home')}</Link>
-        <Link href="/auth/login">{t('login')}</Link>
+        {!user && <Link href="/auth/login">{t('login')}</Link>}
+        {user && <Link href="/profile">Go to profile - {user.name}</Link>}
         <Currency />
         <Language />
         <BasketButton />

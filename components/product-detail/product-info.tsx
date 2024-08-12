@@ -39,7 +39,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
   const handleBasket = (redirect: boolean) => mutation.mutate({ redirect })
 
   return (
-    <div className={['flex column flex-1'].join(' ')}>
+    <div className={['flex column flex-1'].join(' ')} data-testid="product-detail-div">
       <Toaster />
       <h2>{product.name}</h2>
       <hr />
@@ -61,7 +61,11 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
           <button onClick={() => handleBasket(true)} className={styles['purchase-button']}>
             <BuyIcon /> {t('buyNowButton')}
           </button>
-          <button onClick={() => handleBasket(false)} className={styles['purchase-button']}>
+          <button
+            data-testid="add-to-basket-button"
+            onClick={() => handleBasket(false)}
+            className={styles['purchase-button']}
+          >
             <Basket2 />
             {t('addToBasket')}
           </button>

@@ -38,7 +38,7 @@ export default function Page() {
 
   return (
     <div className={['mt-2 flex wrap', styles['product-wrapper']].join(' ')}>
-      {data?.error_code && <Alert type="error" message={t('error')} />}
+      {data?.error_code && <Alert type="error" message={t('error') + ':' + data.error_code} />}
       {isLoading && <p>{t('loading')}</p>}
       {data?.product && (
         <>

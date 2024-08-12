@@ -34,7 +34,7 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
   }, [])
 
   return (
-    <div ref={parentRef} className={'flex column flex-1 overflow-hidden'}>
+    <div ref={parentRef} className={'flex column flex-1 overflow-hidden'} data-testid="product-images-div">
       <h1>{product.name}</h1>
       <hr />
       <div className={styles['product-thumbnail']}>

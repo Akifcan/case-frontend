@@ -31,6 +31,7 @@ export default function BasketButton() {
       >
         {data && data.totalItem > 0 && (
           <div
+            data-testid="basket-count-div"
             aria-label={`There are ${data.totalItem} in the basket`}
             className={styles['basket-button-badge']}
           >

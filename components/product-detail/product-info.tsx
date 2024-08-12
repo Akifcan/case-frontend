@@ -9,10 +9,12 @@ import fetcher from '@/store/fetcher'
 import { useUser } from '@/hooks/user.hook'
 import { queryClient } from '@/store/redux.provider'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const { visitorId, currency } = useUser()
   const router = useRouter()
+  const t = useTranslations('product')
 
   const mutation = useMutation({
     mutationFn: async ({ redirect: boolean }: { redirect: boolean }) => {
@@ -26,18 +28,16 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       })
     },
     onSuccess: (data, vars) => {
+      queryClient.invalidateQueries({ queryKey: ['total-basket-item'] })
       if (vars.redirect) {
         router.push('/basket')
       } else {
         toast(data.message ?? data.error_code ?? '', { position: 'top-right' })
-        queryClient.invalidateQueries({ queryKey: ['total-basket-item'] })
       }
     },
   })
 
-  const handleRedirectToBasket = () => mutation.mutate({ redirect: true })
-
-  const handleBasket = () => mutation.mutate({ redirect: false })
+  const handleBasket = (redirect: boolean) => mutation.mutate({ redirect })
 
   return (
     <div className={['flex column flex-1'].join(' ')}>
@@ -59,16 +59,16 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       </div>
       {!mutation.isPending && (
         <div className={['flex align-items-center wrap', styles['price']].join(' ')} style={{ gap: '.3rem' }}>
-          <button onClick={handleRedirectToBasket} className={styles['purchase-button']}>
-            <BuyIcon /> Buy now
+          <button onClick={() => handleBasket(true)} className={styles['purchase-button']}>
+            <BuyIcon /> {t('buyNowButton')}
           </button>
-          <button onClick={handleBasket} className={styles['purchase-button']}>
+          <button onClick={() => handleBasket(false)} className={styles['purchase-button']}>
             <Basket2 />
-            Add to basket
+            {t('addToBasket')}
           </button>
         </div>
       )}
-      {mutation.isPending && <p>Please wait</p>}
+      {mutation.isPending && <p>{t('wait')}</p>}
     </div>
   )
 }

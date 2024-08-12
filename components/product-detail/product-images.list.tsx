@@ -2,11 +2,13 @@ import Image from 'next/image'
 import styles from './product-detail.module.css'
 import { useEffect, useRef, useState } from 'react'
 import { ProductImageProps, ProductProps } from '../product/product.types'
+import { useTranslations } from 'next-intl'
 
 export default function ProductImagesList({ product }: Readonly<{ product: ProductProps }>) {
   const parentRef = useRef<HTMLDivElement>(null)
   const childRef = useRef<HTMLDivElement>(null)
   const [thumbnail, setThumbnail] = useState<ProductImageProps>()
+  const t = useTranslations('product')
 
   const resize = () => {
     const el = childRef.current
@@ -39,6 +41,7 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
         <Image
           priority={true}
           fill
+          key={Math.random()}
           sizes={'100%'}
           src={thumbnail?.src ?? product.images[0].src}
           alt={thumbnail?.altTag ?? product.images[0].src}
@@ -49,13 +52,14 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
         {product.images.map((image) => {
           return (
             <div
-              aria-label="Click image for view"
+              title={t('imageAria')}
+              aria-label={t('imageAria')}
               onClick={() => setThumbnail(image)}
               key={image.src}
               className={[styles['product-image-card']].join(' ')}
             >
               <Image
-                key={image.src}
+                key={Math.random()}
                 fill
                 sizes={'100%'}
                 src={image.src}

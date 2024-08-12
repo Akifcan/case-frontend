@@ -2,5 +2,22 @@
     "menu": {
         "home": "Ana Sayfa",
         "login": "Giriş Yapın"
+    },
+    "basket": {
+        "loading": "Ürünler yükleniyor...",
+        "totalPrice": "Toplam Fiyat:",
+        "empty": "Henüz bir ürün eklemediniz",
+        "error": "Beklenmedik bir hata oluştu lütfen tekrar deneyin",
+        "quantity": "Adet:",
+        "unitPrice": "Adet Fiyatı:",
+        "emptyBasket": "Sepetiniz şu an boş"
+    },
+    "product": {
+        "loading": "Ürünler yükleniyor...",
+        "error": "Beklenmedik bir hata oluştu lütfen tekrar deneyin",
+        "imageAria": "Görüntülemek için resme tıklayın",
+        "buyNowButton": "Şimdi satın al",
+        "addToBasket": "Sepete ekle",
+        "wait": "Lütfen Bekleyin"
     }
 }

@@ -10,11 +10,13 @@ import { useParams } from 'next/navigation'
 import Alert from '@/components/alert/alert'
 import { useEffect } from 'react'
 import { useUser } from '@/hooks/user.hook'
+import { useTranslations } from 'next-intl'
 
 export default function Page() {
   const currency = useAppSelector((state) => state.currency.currency)
   const { slug } = useParams()
   const { visitorId, currency: userCurrency } = useUser()
+  const t = useTranslations('product')
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['product'],
@@ -36,8 +38,8 @@ export default function Page() {
 
   return (
     <div className={['mt-2 flex wrap', styles['product-wrapper']].join(' ')}>
-      {data?.error_code && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
-      {isLoading && <p>Ürünler yükleniyor...</p>}
+      {data?.error_code && <Alert type="error" message={t('error')} />}
+      {isLoading && <p>{t('loading')}</p>}
       {data?.product && (
         <>
           <ProductImagesList product={data.product} />

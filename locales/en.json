@@ -2,5 +2,22 @@
     "menu": {
         "home": "Home",
         "login": "Login"
+    },
+    "basket": {
+        "loading": "Loading products...",
+        "totalPrice": "Total Price:",
+        "empty": "You have not added a product yet",
+        "error": "An unexpected error occurred please try again",
+        "quantity": "Quantity:",
+        "emptyBasket": "Your basket is empty now",
+        "unitPrice": "Unit Price:"
+    },
+    "product": {
+        "loading": "Loading products...",
+        "error": "An unexpected error occurred please try again",
+        "imageAria": "Click image for view",
+        "buyNowButton": "Buy now",
+        "addToBasket": "Add to basket",
+        "wait": "Please wait"
     }
 }

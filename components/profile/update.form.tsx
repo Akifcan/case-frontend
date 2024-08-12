@@ -4,7 +4,7 @@ import fetcher from '@/store/fetcher'
 import { useMutation } from '@tanstack/react-query'
 import type { UpdateForm } from './profile.types'
 import { useUser } from '@/hooks/user.hook'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { queryClient } from '@/store/redux.provider'
 
 export default function UpdateForm() {
@@ -29,7 +29,6 @@ export default function UpdateForm() {
 
   return (
     <>
-      <Toaster />
       <Formik
         initialValues={{
           name: user?.name ?? '',

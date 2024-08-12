@@ -3,7 +3,7 @@ import Basket2 from '../header/icons/basket2'
 import BuyIcon from '../header/icons/buy.icon'
 import { ProductProps } from '../product/product.types'
 import styles from './product-detail.module.css'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import { useUser } from '@/hooks/user.hook'
@@ -52,7 +52,6 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
 
   return (
     <div className={['flex column flex-1'].join(' ')} data-testid="product-detail-div">
-      <Toaster />
       <h2>{product.name}</h2>
       <hr />
       <p>{product.description}</p>
@@ -85,7 +84,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       )}
       {mutation.isPending && <p>{t('wait')}</p>}
 
-      {user?.role === 'Admin' && <AdminActions />}
+      {user?.role === 'Admin' && <AdminActions product={product} />}
     </div>
   )
 }

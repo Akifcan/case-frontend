@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Dialog from '../dialog/dialog'
 import { useUser } from '@/hooks/user.hook'
 import fetcher from '@/store/fetcher'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/store/redux.provider'
 
@@ -40,7 +40,6 @@ export default function EmptyBasket() {
 
   return (
     <>
-      <Toaster />
       <Dialog
         isOpen={isDeleteDialogOpen}
         onClose={handleClose}

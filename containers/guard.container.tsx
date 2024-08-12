@@ -1,15 +1,13 @@
-import { useUser } from '@/hooks/user.hook'
 import { useRouter } from '@/i18n.config'
 import { useAppSelector } from '@/store/store'
 import { ReactNode, useEffect } from 'react'
 
 export default function GuardContainer({ children }: Readonly<{ children: ReactNode }>) {
-  const { user } = useUser()
+  const user = useAppSelector((state) => state.user.user)
   const loggedIn = useAppSelector((state) => state.user.loggedIn)
   const router = useRouter()
 
   useEffect(() => {
-    console.log(loggedIn)
     if (loggedIn === undefined) {
       return
     }

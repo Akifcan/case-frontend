@@ -30,10 +30,12 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
       dispatch(setLoggedIn(false))
       return
     }
+    console.log('CALL')
     refetch()
   }, [])
 
   useEffect(() => {
+    console.log(data)
     if (data?.errorCode) {
       toast('Lütfen tekrar giriş yapın', { position: 'top-right' })
       dispatch(setLoggedIn(false))

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 
 export const useUser = () => {
   const currency = useAppSelector((state) => state.currency.currency)
+  const user = useAppSelector((state) => state.user.user)
 
   const handleVisitorId = () => {
     if (!Cookies.get('VISITOR_ID')) {
@@ -12,6 +13,7 @@ export const useUser = () => {
   }
 
   return {
+    user,
     visitorId: handleVisitorId(),
     currency: Cookies.get('APP_CURRENCY') ?? currency,
   }

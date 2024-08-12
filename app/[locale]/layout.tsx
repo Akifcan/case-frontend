@@ -4,7 +4,7 @@ import ReduxProvider from '@/store/redux.provider'
 import Header from '@/components/header/header'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { useEffect } from 'react'
+import AuthContainer from '@/containers/auth.container'
 
 export const metadata: Metadata = {
   title: 'Shop',
@@ -25,8 +25,10 @@ export default async function LocaleLayout({
       <html lang={locale}>
         <body className="container">
           <NextIntlClientProvider messages={messages}>
-            <Header />
-            {children}
+            <AuthContainer>
+              <Header />
+              {children}
+            </AuthContainer>
           </NextIntlClientProvider>
         </body>
       </html>

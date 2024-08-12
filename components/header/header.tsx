@@ -25,7 +25,7 @@ export default function Header() {
       </Link>
       <nav className="flex wrap align-items-center">
         <Link href="/">{t('home')}</Link>
-        <Link href="/">{t('login')}</Link>
+        <Link href="/auth/login">{t('login')}</Link>
         <Currency />
         <Language />
         <BasketButton />

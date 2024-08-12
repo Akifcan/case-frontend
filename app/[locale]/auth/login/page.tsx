@@ -1,14 +1,17 @@
 'use client'
 import * as Yup from 'yup'
 import { Formik, Form, Field } from 'formik'
-import { Link } from '@/i18n.config'
+import { Link, useRouter } from '@/i18n.config'
 import { useMutation } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import Alert from '@/components/alert/alert'
 import Cookies from 'js-cookie'
 import { LoginForm } from '@/components/auth/auth.types'
+import { queryClient } from '@/store/redux.provider'
 
 export default function Login() {
+  const router = useRouter()
+
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required').max(100, 'max 100 character'),
     password: Yup.string()
@@ -32,6 +35,8 @@ export default function Login() {
         return
       }
       Cookies.set('AUTH_TOKEN', data.accessToken)
+      queryClient.fetchQuery({ queryKey: ['auth'] })
+      router.push('/')
     },
   })
 

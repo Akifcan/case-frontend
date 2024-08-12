@@ -5,11 +5,13 @@ interface FetcherProps extends RequestInit {
 }
 export default async function fetcher<T>(uri: string, request: FetcherProps) {
   const language = Cookies.get('NEXT_LOCALE')
+  const token = Cookies.get('AUTH_TOKEN')
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${uri}`, {
     ...request,
     headers: {
       'content-type': 'application/json',
       'x-lang': language ? language : 'en',
+      authorization: `Bearer ${token}`,
       ...request.headers,
     },
     body: request.body ? JSON.stringify(request.body) : undefined,

@@ -1,0 +1,64 @@
+.dialog {
+  animation: fade-out 0.7s ease-out;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  width: min(400px, 90%);
+}
+
+.confirm-button {
+  border: none;
+  border: 1px solid var(--color-primary);
+  background-color: white;
+  flex: 1;
+  padding: 0.4rem;
+  cursor: pointer;
+  border-radius: 8px;
+  padding-block: 0.7rem;
+}
+
+.cancel-button {
+  border: none;
+  background-color: var(--color-primary);
+  flex: 1;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: white;
+  border-radius: 8px;
+  padding-block: 0.7rem;
+}
+
+.dialog[open]::backdrop {
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.2);
+}
+
+.dialog[open] {
+  animation: fade-in 0.7s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

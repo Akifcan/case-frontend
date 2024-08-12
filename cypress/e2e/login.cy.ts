@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('login spec', () => {
   beforeEach(() => {
     const stub = cy.stub()
     Cypress.on('uncaught:exception', (err) => {

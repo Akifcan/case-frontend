@@ -1,6 +1,6 @@
 'use client'
 import fetcher from '@/store/fetcher'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { ReactNode, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { UserProps } from '@/store/features/user/user.types'
@@ -27,6 +27,7 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
       return
     }
     if (!Cookies.get('AUTH_TOKEN')) {
+      dispatch(setLoggedIn(false))
       return
     }
     refetch()

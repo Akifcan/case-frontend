@@ -1,16 +1,14 @@
 'use client'
+import GreetingHeader from '@/components/profile/greeting.header'
 import GuardContainer from '@/containers/guard.container'
-import { useUser } from '@/hooks/user.hook'
+import UpdateForm from '@/components/profile/update.form'
 
 export default function Profile() {
-  const { user, logout } = useUser()
   return (
     <GuardContainer>
       <div className="flex column mt-2">
-        <h2>Welcome, {user?.name}</h2>
-        <button onClick={logout} className="p-half" style={{ width: 'max-content' }}>
-          Logout
-        </button>
+        <GreetingHeader />
+        <UpdateForm />
       </div>
     </GuardContainer>
   )

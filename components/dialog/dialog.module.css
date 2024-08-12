@@ -31,11 +31,8 @@
   padding-block: 0.7rem;
 }
 
-.dialog[open]::backdrop {
-  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.2);
-}
-
 .dialog[open] {
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.4);
   animation: fade-in 0.7s ease-out;
 }
 

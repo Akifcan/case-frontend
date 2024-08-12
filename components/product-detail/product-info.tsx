@@ -11,12 +11,14 @@ import { queryClient } from '@/store/redux.provider'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
+import AdminActions from './admin-actions/admin-actions'
 
 export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const { visitorId, currency } = useUser()
   const router = useRouter()
   const t = useTranslations('product')
   const throttlerRef = useRef<boolean>(true)
+  const { user } = useUser()
 
   const mutation = useMutation({
     mutationFn: async ({ redirect: boolean }: { redirect: boolean }) => {
@@ -82,6 +84,8 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
         </div>
       )}
       {mutation.isPending && <p>{t('wait')}</p>}
+
+      {user?.role === 'Admin' && <AdminActions />}
     </div>
   )
 }

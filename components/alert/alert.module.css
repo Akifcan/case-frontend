@@ -5,10 +5,10 @@
   color: white;
 }
 
-.alert.error {
+.error {
   background-color: crimson;
 }
 
-.alert.info {
+.info {
   background-color: darkblue;
 }

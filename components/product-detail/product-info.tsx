@@ -20,7 +20,6 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
     mutationFn: async ({ redirect: boolean }: { redirect: boolean }) => {
       return await fetcher<{ message?: string; error_code?: string }>(`/basket/${product.product.id}`, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
         body: {
           visitorId,
           currency,

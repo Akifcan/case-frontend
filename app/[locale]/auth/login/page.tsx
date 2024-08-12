@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import Alert from '@/components/alert/alert'
 import Cookies from 'js-cookie'
+import { LoginForm } from '@/components/auth/auth.types'
 
 export default function Login() {
   const LoginSchema = Yup.object().shape({
@@ -17,7 +18,7 @@ export default function Login() {
   })
 
   const { mutate, isPending, data } = useMutation({
-    mutationFn: async ({ email, password }: { email: string; password: string }) => {
+    mutationFn: async ({ email, password }: LoginForm) => {
       return await fetcher<{ accessToken: string; error_code?: string; message?: string }>(`/auth/login`, {
         method: 'POST',
         body: {
@@ -54,7 +55,7 @@ export default function Login() {
           {errors.email && touched.email ? <div>{errors.email}</div> : null}
           <Field name="password" type="password" placeholder="enter password" className="p-half" />
           {errors.password && touched.password ? <div>{errors.password}</div> : null}
-          <button type="submit" className="p-half">
+          <button disabled={isPending} type="submit" className="p-half">
             Submit
           </button>
           <Link href={'/auth/register'}>Click for register</Link>

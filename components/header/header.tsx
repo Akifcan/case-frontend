@@ -28,7 +28,11 @@ export default function Header() {
       <nav className="flex wrap align-items-center">
         <Link href="/">{t('home')}</Link>
         {!user && <Link href="/auth/login">{t('login')}</Link>}
-        {user && <Link href="/profile">Go to profile - {user.name}</Link>}
+        {user && (
+          <Link href="/profile" data-testid="go-to-profile-link">
+            Go to profile - {user.name}
+          </Link>
+        )}
         <Currency />
         <Language />
         <BasketButton />

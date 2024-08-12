@@ -56,11 +56,23 @@ export default function Login() {
           <h1>Login</h1>
           {isPending && <p>Lütfen Bekleyin</p>}
           {data?.error_code && <Alert type="info" message={data.message || 'Error'} />}
-          <Field name="email" type="email" placeholder="enter email" className="p-half" />
+          <Field
+            name="email"
+            type="email"
+            placeholder="enter email"
+            className="p-half"
+            data-testid="login-email-input"
+          />
           {errors.email && touched.email ? <div>{errors.email}</div> : null}
-          <Field name="password" type="password" placeholder="enter password" className="p-half" />
+          <Field
+            name="password"
+            type="password"
+            placeholder="enter password"
+            className="p-half"
+            data-testid="login-password-input"
+          />
           {errors.password && touched.password ? <div>{errors.password}</div> : null}
-          <button disabled={isPending} type="submit" className="p-half">
+          <button disabled={isPending} type="submit" className="p-half" data-testid="login-submit-button">
             Submit
           </button>
           <Link href={'/auth/register'}>Click for register</Link>

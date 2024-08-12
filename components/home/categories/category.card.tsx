@@ -11,7 +11,11 @@ export default function CategoryCard({
   }
 
   return (
-    <li onClick={handleCategory} className={[styles.card, isActive ? styles.active : ''].join(' ')}>
+    <li
+      data-testid="category-li"
+      onClick={handleCategory}
+      className={[styles.card, isActive ? styles.active : ''].join(' ')}
+    >
       {category.name}
     </li>
   )

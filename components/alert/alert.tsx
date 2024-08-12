@@ -9,6 +9,11 @@ export default function Alert({
   message: string
 }>) {
   return (
-    <div className={[styles.alert, type === 'info' ? styles.info : styles.error].join(' ')}>{message}</div>
+    <div
+      data-testid="alert"
+      className={[styles.alert, type === 'info' ? styles.info : styles.error].join(' ')}
+    >
+      {message}
+    </div>
   )
 }

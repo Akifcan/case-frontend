@@ -56,7 +56,7 @@ export default function Page() {
       {data && (
         <>
           {data?.products?.length > 0 && (
-            <div className="flex column">
+            <div className="flex column" data-testid="products-div">
               <section className="grid">
                 {data.products.map((product) => {
                   return <ProductCard key={product.id} product={product} />

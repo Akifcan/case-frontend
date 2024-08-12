@@ -33,6 +33,7 @@ export default function SearchInput() {
       className={styles['search']}
     >
       <input
+        data-testid="search-product-input"
         ref={inputRef}
         onChange={handleSubmit}
         required

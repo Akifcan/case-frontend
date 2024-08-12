@@ -8,7 +8,7 @@ export default function ProductCard({ product }: Readonly<{ product: ProductProp
 
   return (
     <Link href={`/product/${product.slug}`} className="flex column text-decoration-none" style={{ gap: '0' }}>
-      <div className={styles['product-image']}>
+      <div className={styles['product-image']} data-testid="product-div">
         <Image
           fill
           sizes={'100%'}

@@ -59,7 +59,7 @@ export default function Categories() {
   useEffect(handleInitialCategory, [searchParams])
 
   return (
-    <ul className={styles.categories}>
+    <ul className={styles.categories} data-testid="categories-ul">
       {isLoading && <p>Categories loading...</p>}
       {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
       {data &&

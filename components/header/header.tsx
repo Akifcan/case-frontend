@@ -8,6 +8,7 @@ import Cookies from 'js-cookie'
 import { Link } from '@/i18n.config'
 import BasketButton from './basket.button'
 import { useUser } from '@/hooks/user.hook'
+import ProfileButton from './profile.button'
 
 export default function Header() {
   const t = useTranslations('menu')
@@ -28,11 +29,7 @@ export default function Header() {
       <nav className="flex wrap align-items-center">
         <Link href="/">{t('home')}</Link>
         {!user && <Link href="/auth/login">{t('login')}</Link>}
-        {user && (
-          <Link href="/profile" data-testid="go-to-profile-link">
-            Go to profile - {user.name}
-          </Link>
-        )}
+        {user && <ProfileButton />}
         <Currency />
         <Language />
         <BasketButton />

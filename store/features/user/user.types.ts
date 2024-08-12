@@ -1,7 +1,7 @@
 export interface UserProps {
   name: string
   email: string
-  role: 'admin' | 'user'
+  role: 'Admin' | 'User'
 }
 
 export interface UserState {

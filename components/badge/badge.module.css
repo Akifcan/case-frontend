@@ -1,0 +1,8 @@
+.badge {
+  text-decoration: none;
+  background-color: var(--color-primary);
+  width: max-content;
+  color: white;
+  border-radius: 8px;
+  padding: 0.2rem;
+}

@@ -13,8 +13,8 @@ export default function EmptyBasket() {
       <Dialog
         isOpen={isDeleteDialogOpen}
         onClose={handleClose}
-        title="Silme işlemini onayla"
-        subtitle="Bu işlem geri alınabilir"
+        title="Sepeti temizle"
+        subtitle="tüm sepeti temizlemek istiyor musunuz?"
       />
       <button
         className="p-half"

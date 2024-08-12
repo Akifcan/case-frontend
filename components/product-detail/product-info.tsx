@@ -10,11 +10,13 @@ import { useUser } from '@/hooks/user.hook'
 import { queryClient } from '@/store/redux.provider'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { useRef } from 'react'
 
 export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const { visitorId, currency } = useUser()
   const router = useRouter()
   const t = useTranslations('product')
+  const throttlerRef = useRef<boolean>(true)
 
   const mutation = useMutation({
     mutationFn: async ({ redirect: boolean }: { redirect: boolean }) => {
@@ -36,7 +38,15 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
     },
   })
 
-  const handleBasket = (redirect: boolean) => mutation.mutate({ redirect })
+  const handleBasket = (redirect: boolean) => {
+    if (throttlerRef.current) {
+      mutation.mutate({ redirect })
+      throttlerRef.current = false
+      setTimeout(() => {
+        throttlerRef.current = true
+      }, 500)
+    }
+  }
 
   return (
     <div className={['flex column flex-1'].join(' ')} data-testid="product-detail-div">

@@ -41,7 +41,7 @@ export default function Basket() {
               {data.basket.map((basket, index) => (
                 <BasketCard key={index} basket={basket} />
               ))}
-              <h4>
+              <h4 data-testid="total-price-h4">
                 {t('totalPrice')} {data.pricing.label}
               </h4>
             </>

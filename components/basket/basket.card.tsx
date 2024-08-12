@@ -8,7 +8,11 @@ export default function BasketCard({ basket }: Readonly<{ basket: BasketProps }>
   const t = useTranslations('basket')
 
   return (
-    <Link href={`/product/${basket.product.slug}`} className="text-decoration-none">
+    <Link
+      href={`/product/${basket.product.slug}`}
+      className="text-decoration-none"
+      data-testid="basket-item-div"
+    >
       <div className={styles['basket-card']}>
         <div className={styles['basket-image']}>
           <Image

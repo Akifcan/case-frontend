@@ -23,7 +23,7 @@ export default function BasketButton() {
   })
 
   return (
-    <Link href={'/basket'}>
+    <Link href={'/basket'} data-testid="basket-link-div">
       <div
         className={styles['basket-button']}
         title={data?.totalItem ? `There are ${data.totalItem} in the basket` : 'No item in this basket'}

@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <Link href={'/'} className="text-decoration-none">
+      <Link href={'/'} className="text-decoration-none" data-testid="logo-h1">
         <h1>Shop</h1>
       </Link>
       <nav className="flex wrap align-items-center">

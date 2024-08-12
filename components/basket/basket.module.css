@@ -1,0 +1,21 @@
+.basket-card {
+  border: 1px solid var(--color-primary);
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-transform: capitalize;
+}
+
+.basket-card ul {
+  list-style: none;
+}
+
+.basket-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+}

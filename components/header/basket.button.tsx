@@ -1,9 +1,9 @@
 import BasketIcon from './icons/basket.icon'
 import styles from './header.module.css'
-import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import { useUser } from '@/hooks/user.hook'
+import { Link } from '@/i18n.config'
 
 export default function BasketButton() {
   const { currency, visitorId } = useUser()
@@ -23,7 +23,7 @@ export default function BasketButton() {
   })
 
   return (
-    <Link href={''}>
+    <Link href={'/basket'}>
       <div
         className={styles['basket-button']}
         title={data?.totalItem ? `There are ${data.totalItem} in the basket` : 'No item in this basket'}

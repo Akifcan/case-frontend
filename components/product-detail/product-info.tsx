@@ -8,12 +8,14 @@ import { useMutation } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import { useUser } from '@/hooks/user.hook'
 import { queryClient } from '@/store/redux.provider'
+import { useRouter } from 'next/navigation'
 
 export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const { visitorId, currency } = useUser()
+  const router = useRouter()
 
   const mutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async ({ redirect: boolean }: { redirect: boolean }) => {
       return await fetcher<{ message?: string; error_code?: string }>(`/basket/${product.product.id}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -23,15 +25,19 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
         },
       })
     },
-    onSuccess: (data) => {
-      toast(data.message ?? data.error_code ?? '', { position: 'top-right' })
-      queryClient.invalidateQueries({ queryKey: ['total-basket-item'] })
+    onSuccess: (data, vars) => {
+      if (vars.redirect) {
+        router.push('/basket')
+      } else {
+        toast(data.message ?? data.error_code ?? '', { position: 'top-right' })
+        queryClient.invalidateQueries({ queryKey: ['total-basket-item'] })
+      }
     },
   })
 
-  const handleRedirectToBasket = () => {}
+  const handleRedirectToBasket = () => mutation.mutate({ redirect: true })
 
-  const handleBasket = () => mutation.mutate()
+  const handleBasket = () => mutation.mutate({ redirect: false })
 
   return (
     <div className={['flex column flex-1'].join(' ')}>

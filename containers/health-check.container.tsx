@@ -9,7 +9,7 @@ export default function HealthCheckContainer({ children }: Readonly<{ children: 
   const { error, data, isLoading } = useQuery({
     queryKey: ['healthcheck'],
     queryFn: async () => {
-      return await fetcher<{ status: boolean }>('/health/check', {
+      return await fetcher<{ status: string }>('/health/check', {
         method: 'GET',
       })
     },
@@ -24,7 +24,7 @@ export default function HealthCheckContainer({ children }: Readonly<{ children: 
     )
   }
 
-  if (error) {
+  if (error || data?.status !== 'ok') {
     return <Alert type="error" message="Healthcheck error" />
   }
 

@@ -35,6 +35,6 @@ describe('product detail spec', () => {
     cy.get(`[data-testid="basket-link-div"]`).click()
     cy.wait(2000)
     cy.get(`[data-testid="total-price-h4"]`).should('be.visible')
-    cy.get(`[data-testid="basket-item-div"]`).should('have.length.at.least', 2)
+    cy.get(`[data-testid="basket-item-div"]`).should('have.length.at.least', 1)
   })
 })

@@ -24,7 +24,10 @@ export default function EmptyBasket() {
     onSuccess: (data) => {
       toast(data.message, { position: 'top-right' })
       if (data.empty) {
-        queryClient.fetchQuery({ queryKey: ['basket'] })
+        Promise.allSettled([
+          queryClient.fetchQuery({ queryKey: ['basket'] }),
+          queryClient.fetchQuery({ queryKey: ['total-basket-item'] }),
+        ])
       }
     },
     onError: () => {

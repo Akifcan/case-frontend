@@ -32,7 +32,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       })
     },
     onSuccess: (data, vars) => {
-      queryClient.invalidateQueries({ queryKey: ['total-basket-item'] })
+      queryClient.fetchQuery({ queryKey: ['total-basket-item'] })
       if (vars.redirect) {
         router.push('/basket')
       } else {
@@ -86,7 +86,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       {mutation.isPending && <p>{t('wait')}</p>}
 
       {user?.role === 'Admin' && <AdminActions product={product} />}
-      <CommentList productId={product.id} />
+      <CommentList productId={product.product.id} />
     </div>
   )
 }

@@ -24,7 +24,10 @@ export default function RemoveProductButton({ productId }: Readonly<{ productId:
       })
     },
     onSuccess: (data) => {
-      queryClient.fetchQuery({ queryKey: ['basket'] })
+      Promise.allSettled([
+        queryClient.fetchQuery({ queryKey: ['basket'] }),
+        queryClient.fetchQuery({ queryKey: ['total-basket-item'] }),
+      ])
       toast(data.message, { position: 'top-right' })
     },
   })

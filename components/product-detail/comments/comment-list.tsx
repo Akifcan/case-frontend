@@ -9,24 +9,31 @@ import { useUser } from '@/hooks/user.hook'
 export default function CommentList({ productId }: Readonly<{ productId: number }>) {
   const { user } = useUser()
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['comment-list'],
     queryFn: async () => {
-      return await fetcher<{ comments: CommentProps[]; totalCount: number }>(`/comment/${productId}`, {
-        method: 'GET',
-      })
+      return await fetcher<{ comments: CommentProps[]; totalCount: number; message?: string }>(
+        `/comment/${productId}`,
+        {
+          method: 'GET',
+        },
+      )
     },
   })
 
-  return data ? (
+  return !isLoading ? (
     <div className="mt-2 flex column">
-      <h3>Yorumlar ({data.totalCount}) </h3>
-      {user && <CreateComment productId={productId} />}
-      <hr />
-      {data.comments.length > 0 ? (
-        data.comments.map((comment) => <CommentCard comment={comment} key={comment.id} />)
-      ) : (
-        <Alert type="info" message="Henüz bir yorum yok" />
+      {data && (
+        <>
+          <h3>Yorumlar ({data.totalCount}) </h3>
+          {user && <CreateComment productId={productId} />}
+          <hr />
+          {data?.comments?.length > 0 &&
+            data?.comments?.map((comment) => <CommentCard comment={comment} key={comment.id} />)}
+
+          {data?.totalCount === 0 && <Alert type="info" message="Henüz bir yorum yok" />}
+          {data?.message && <Alert type="info" message={data.message} />}
+        </>
       )}
     </div>
   ) : (

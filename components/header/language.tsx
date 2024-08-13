@@ -10,10 +10,17 @@ export default function Language() {
   const router = useRouter()
   const pathname = usePathname()
 
+  const handleAlternateLink = (locale: Locale): string | undefined => {
+    const href = document?.head?.querySelector(`[hreflang='${locale}']`) as HTMLLinkElement
+    return href?.href
+  }
+
   const handleLocale = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as Locale
     Cookies.set('NEXT_LOCALE', newLocale)
-    router.push(`${pathname}`, { locale: newLocale })
+    console.log('asdf')
+    const link = handleAlternateLink(newLocale)
+    router.push(link ?? pathname, { locale: newLocale })
   }
 
   return (

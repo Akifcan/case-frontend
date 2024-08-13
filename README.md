@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# README
 
-## Getting Started
+## Server
 
-First, run the development server:
+- Backend Server URL: **http://139.59.210.72:3004**
+- Backend Comment Microservice URL: **http://139.59.210.72:3005**
+- Web App URL: 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Installation
+
+## Case Comment Microservice
+
+- Docker 
+  - Run docker file first inside the **docker** folder.
+  - `docker compose up -d`
+
+- Set up .env file.
+  - create **.env** file in the root folder.
+  - **.env** file should look like this.
+  ```
+  # DB_NAME=case_db
+  # DB_USER=case_user
+  # DB_PASSWORD=case_password
+  # DB_PORT=5432
+  # DB_HOST=localhost
+
+  DB_NAME=postgres
+  DB_USER=postgres.kgoxitgoblfsqshfufge
+  DB_PASSWORD=QGj5k2olkRqpGvNL
+  DB_PORT=6543
+  DB_HOST=aws-0-eu-central-1.pooler.supabase.com
+
+  APP_PORT=3002
+
+  JWT_SECRET=af5++23dxsFFsx
+  #JWT_EXPIRES_IN=60s
+  JWT_EXPIRES_IN=1d
+
+  FALLBACK_LANGUAGE=en
+
+  REDIS_PORT=6379
+  REDIS_HOST=127.0.0.1
+  REDIS_TTL=10
+
+  RATE_LIMITER_TTL=60000
+  RATE_LIMIT=10
+
+  COMMENT_SERVICE_PORT=3002
+  COMMENT_SERVICE_HOST=localhost```
+
+---
+
+-  ## Run the service
+
+ - `yarn install`
+ - `yarn start:dev` 
+
+- ## Tests
+ - `yarn test`
+
+- ## Please run the seeder before execute the tests.
+
+
+## Case Backend
+
+- Docker 
+  - Run docker file first inside the **docker** folder.
+  - `docker compose up -d`
+
+- Set up .env file.
+  - create **.env** file in the root folder.
+  - **.env** file should look like this.
+  ```
+    # DB_NAME=case_db
+    # DB_USER=case_user
+    # DB_PASSWORD=case_password
+    # DB_PORT=5432
+    # DB_HOST=localhost
+
+    DB_NAME=postgres
+    DB_USER=postgres.kgoxitgoblfsqshfufge
+    DB_PASSWORD=QGj5k2olkRqpGvNL
+    DB_PORT=6543
+    DB_HOST=aws-0-eu-central-1.pooler.supabase.com
+
+    APP_PORT=3000
+
+    JWT_SECRET=af5++23dxsFFsx
+    #JWT_EXPIRES_IN=60s
+    JWT_EXPIRES_IN=1d
+
+    FALLBACK_LANGUAGE=en
+
+    REDIS_PORT=6379
+    REDIS_HOST=127.0.0.1
+    REDIS_TTL=10
+
+    RATE_LIMITER_TTL=60000
+    RATE_LIMIT=10
+
+    COMMENT_SERVICE_PORT=3002
+    COMMENT_SERVICE_HOST=localhost
+
+    HEALTHCHECK_URI=http://localhost:3000/health```
+
+  
+ - `yarn install`
+ - `yarn start:dev` 
+
+- ## Seeder (IMPORTANT)
+
+- Please run these endpoints before use the app.
+- `localhost:3000/seed`
+- `localhost:3000/seed/external-comment-merge`
+- Please read this comment lines: https://github.com/Akifcan/case-backend/blob/93160f4671059e1d6d25a13a187584f034531fcd/src/seed/seed.controller.ts#L446
+
+- Postman Collection: **https://github.com/Akifcan/case-backend/blob/main/case.postman_collection.json**
+
+- ## Tests
+- # Please run seeder before the tests.
+- `yarn test`
+- `yarn test:2e`
+
+
+---
+
+# Next App
+
+- # Please run seeder before the run web app.
+
+- ## .env file
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `yarn install`
+- `yarn dev --port 3001` 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- ## Tests
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `yarn cy:open`

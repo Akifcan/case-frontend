@@ -22,7 +22,7 @@ export default function Dialog({
             onClose(false)
           }}
         >
-          {t('confirmButton')}
+          {t('cancelButton')}
         </button>
         <button
           className={styles['cancel-button']}
@@ -31,7 +31,7 @@ export default function Dialog({
             onClose(true)
           }}
         >
-          {t('cancelButton')}
+          {t('confirmButton')}
         </button>
       </form>
     </dialog>

@@ -5,6 +5,7 @@ import Header from '@/components/header/header'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import AuthContainer from '@/containers/auth.container'
+import HealthCheckContainer from '@/containers/health-check.container'
 
 export const metadata: Metadata = {
   title: 'Shop',
@@ -25,10 +26,12 @@ export default async function LocaleLayout({
       <html lang={locale}>
         <body className="container">
           <NextIntlClientProvider messages={messages}>
-            <AuthContainer>
-              <Header />
-              {children}
-            </AuthContainer>
+            <HealthCheckContainer>
+              <AuthContainer>
+                <Header />
+                {children}
+              </AuthContainer>
+            </HealthCheckContainer>
           </NextIntlClientProvider>
         </body>
       </html>

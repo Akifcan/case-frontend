@@ -29,7 +29,6 @@ export default function Page() {
         `/product?page=${searchParams.get('page') ?? 1}&limit=3`,
         {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
           body: {
             keyword: searchParams.get('keyword') ?? undefined,
             category: searchParams.get('category') ?? undefined,

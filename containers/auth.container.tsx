@@ -35,7 +35,6 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
   }, [])
 
   useEffect(() => {
-    console.log(data)
     if (data?.errorCode) {
       toast('Lütfen tekrar giriş yapın', { position: 'top-right' })
       dispatch(setLoggedIn(false))

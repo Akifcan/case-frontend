@@ -6,3 +6,7 @@ export interface CommentProps {
     name: string
   }
 }
+
+export interface CommentForm {
+  comment: string
+}

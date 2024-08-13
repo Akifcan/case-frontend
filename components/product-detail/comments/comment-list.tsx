@@ -3,8 +3,12 @@ import CommentCard from './comment.card'
 import fetcher from '@/store/fetcher'
 import { CommentProps } from './comment.types'
 import Alert from '@/components/alert/alert'
+import CreateComment from './create-comment'
+import { useUser } from '@/hooks/user.hook'
 
 export default function CommentList({ productId }: Readonly<{ productId: number }>) {
+  const { user } = useUser()
+
   const { data } = useQuery({
     queryKey: ['comment-list'],
     queryFn: async () => {
@@ -17,7 +21,8 @@ export default function CommentList({ productId }: Readonly<{ productId: number 
   return data ? (
     <div className="mt-2 flex column">
       <h3>Yorumlar ({data.totalCount}) </h3>
-      <hr className="mt-1" />
+      {user && <CreateComment productId={productId} />}
+      <hr />
       {data.comments.length > 0 ? (
         data.comments.map((comment) => <CommentCard comment={comment} key={comment.id} />)
       ) : (

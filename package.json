@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "npx tsc",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "cy:open": "cypress open"
   },
   "dependencies": {

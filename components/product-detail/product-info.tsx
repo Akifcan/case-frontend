@@ -86,7 +86,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       {mutation.isPending && <p>{t('wait')}</p>}
 
       {user?.role === 'Admin' && <AdminActions product={product} />}
-      <CommentList productId={product.product.id} />
+      <CommentList key={product.product.id} productId={product.product.id} />
     </div>
   )
 }

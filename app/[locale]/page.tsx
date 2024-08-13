@@ -13,6 +13,7 @@ import Pagination from '@/components/home/pagination/pagination'
 import { useQueryParam } from '@/hooks/use-query-param.hook'
 import { useRouter } from '@/i18n.config'
 import { useUser } from '@/hooks/user.hook'
+import { useTranslations } from 'next-intl'
 
 export default function Page() {
   const searchParams = useSearchParams()
@@ -20,6 +21,7 @@ export default function Page() {
   const { getQueries } = useQueryParam()
   const router = useRouter()
   const user = useUser()
+  const t = useTranslations()
 
   const { error, data, isLoading, refetch } = useQuery({
     enabled: false,
@@ -50,8 +52,8 @@ export default function Page() {
     <main className="flex column mt-1" style={{ gap: '1rem' }}>
       <SearchInput />
       <Categories />
-      {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
-      {isLoading && <p>Ürünler yükleniyor...</p>}
+      {error && <Alert type="error" message={t('common.error')} />}
+      {isLoading && <p>{t('basket.loading')}</p>}
       {data && (
         <>
           {data?.products?.length > 0 && (
@@ -66,7 +68,7 @@ export default function Page() {
               </div>
             </div>
           )}
-          {data?.products?.length <= 0 && <Alert type="info" message="Ürün bulunamadı" />}
+          {data?.products?.length <= 0 && <Alert type="info" message={t('product.noProduct')} />}
         </>
       )}
     </main>

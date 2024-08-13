@@ -18,7 +18,6 @@ export default function Language() {
   const handleLocale = (e: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = e.target.value as Locale
     Cookies.set('NEXT_LOCALE', newLocale)
-    console.log('asdf')
     const link = handleAlternateLink(newLocale)
     router.push(link ?? pathname, { locale: newLocale })
   }

@@ -41,6 +41,6 @@ export default function CommentList({ productId }: Readonly<{ productId: number 
       )}
     </div>
   ) : (
-    <p>Yorumlar yükleniyor...</p>
+    <p>{t('comments.loading')}</p>
   )
 }

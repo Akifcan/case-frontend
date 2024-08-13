@@ -5,7 +5,11 @@
         "welcome": "Welcome",
 
         "confirmButton": "Confirm",
-        "cancelButton": "Cancel"
+        "cancelButton": "Cancel",
+        "search": "Search here..."
+    },
+    "category": {
+        "removeButton": "Remove"
     },
     "menu": {
         "home": "Home",
@@ -37,7 +41,8 @@
         "imageAria": "Click image for view",
         "buyNowButton": "Buy now",
         "addToBasket": "Add to basket",
-        "wait": "Please wait"
+        "wait": "Please wait",
+        "noProduct": "No product found"
     },
     "auth": {
         "wait": "Please wait",
@@ -76,7 +81,8 @@
         "newCommentTitle": "Share your comment",
         "pleaseWait": "Please Wait..",
         "enterCommentPlaceholder": "Enter comment",
-        "submit": "Submit"
+        "submit": "Submit",
+        "loading": "Comments Loading..."
     }
 
 }

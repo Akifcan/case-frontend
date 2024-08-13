@@ -8,9 +8,11 @@ import { useEffect, useRef, useState } from 'react'
 import CloseIcon from './Icons/close.icon'
 import { useQueryParam } from '@/hooks/use-query-param.hook'
 import { useRouter } from '@/i18n.config'
+import { useTranslations } from 'next-intl'
 
 export default function Categories() {
   const { getQueries, searchParams } = useQueryParam()
+  const t = useTranslations()
 
   const { error, data, isLoading } = useQuery({
     queryKey: ['categories'],
@@ -61,7 +63,7 @@ export default function Categories() {
   return (
     <ul className={styles.categories} data-testid="categories-ul">
       {isLoading && <p>Categories loading...</p>}
-      {error && <Alert type="error" message="Beklenmedik bir hata oluştu lütfen tekrar deneyin" />}
+      {error && <Alert type="error" message={t('common.error')} />}
       {data &&
         data.map((category) => (
           <CategoryCard
@@ -73,7 +75,7 @@ export default function Categories() {
         ))}
       {selectedCategory && (
         <button onClick={handleClearCategorySelection} className="flex align-items-center wrap p-half">
-          <CloseIcon /> Remove
+          <CloseIcon /> {t('category.removeButton')}
         </button>
       )}
     </ul>

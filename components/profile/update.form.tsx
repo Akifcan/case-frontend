@@ -48,7 +48,7 @@ export default function UpdateForm() {
             <Field name="name" type="text" placeholder={t('auth.namePlaceholder')} className="p-half" />
             {errors.name && touched.name ? <div>{errors.name}</div> : null}
             <button disabled={isPending} type="submit" className="p-half m-h30">
-              Submit
+              {t('auth.submit')}
             </button>
           </Form>
         )}

@@ -4,7 +4,11 @@
         "welcome": "Hoş geldin",
 
         "confirmButton": "Onayla",
-        "cancelButton": "İptal Et"
+        "cancelButton": "İptal Et",
+        "search": "Ürün Arayın..."
+    },
+    "category": {
+        "removeButton": "Kaldır"
     },
     "menu": {
         "home": "Ana Sayfa",
@@ -36,7 +40,8 @@
         "imageAria": "Görüntülemek için resme tıklayın",
         "buyNowButton": "Şimdi satın al",
         "addToBasket": "Sepete ekle",
-        "wait": "Lütfen Bekleyin"
+        "wait": "Lütfen Bekleyin",
+        "noProduct": "Ürün Bulunmadı"
     },
     "auth": {
         "loginTitle": "Giriş yapın",
@@ -76,6 +81,7 @@
         "newCommentTitle": "Yorumunuzu Paylaşın",
         "pleaseWait": "Lütfen bekelyin",
         "enterCommentPlaceholder": "Yorumunuz...",
-        "submit": "Submit"
+        "submit": "Submit",
+        "loading": "Yorumlar Yükleniyor..."
     }
 }

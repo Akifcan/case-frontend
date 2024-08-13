@@ -18,7 +18,7 @@ export const useUser = () => {
 
   const handleVisitorId = () => {
     if (!Cookies.get('VISITOR_ID')) {
-      Cookies.set('VISITOR_ID', `${Math.floor(Math.random() * 99999)}`)
+      Cookies.set('VISITOR_ID', `${Math.floor(Math.random() * 99999)}`, { expires: 7 })
     }
     return Number(Cookies.get('VISITOR_ID'))
   }

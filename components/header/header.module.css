@@ -9,12 +9,6 @@
   font-size: 1.3rem;
 }
 
-@media (max-width: 500px) {
-  .header nav {
-    display: none;
-  }
-}
-
 .basket-button {
   cursor: pointer;
   position: relative;

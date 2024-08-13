@@ -1,4 +1,9 @@
 {
+    "common": {
+        "error": "An Unexcepted error occured",
+
+        "welcome": "Welcome"
+    },
     "menu": {
         "home": "Home",
         "login": "Login"
@@ -10,7 +15,18 @@
         "error": "An unexpected error occurred please try again",
         "quantity": "Quantity:",
         "emptyBasket": "Your basket is empty now",
-        "unitPrice": "Unit Price:"
+        "unitPrice": "Unit Price:",
+
+        "confirmRemove": "Confirm remove",
+        "confirmRemoveDesc": "Do you want to clean the whole basket?",
+        "emptyButton": "Empty this basket",
+
+        "confirmProduct": "Remove from cart",
+        "confirmProductDesc": "Remove this product from cart",
+        "confirmAria": "Click to remove",
+
+        "noItem": "No item in this basket",
+        "totalCount": "There are {count} product in the basket"
     },
     "product": {
         "loading": "Loading products...",
@@ -19,5 +35,45 @@
         "buyNowButton": "Buy now",
         "addToBasket": "Add to basket",
         "wait": "Please wait"
+    },
+    "auth": {
+        "wait": "Please wait",
+        "submit": "Submit",
+        "registerButton": "Click for register",
+        "emailPlaceholder": "enter email",
+        "passwordPlaceholder": "enter password",
+        "loginTitle": "Login",
+
+        "namePlaceholder": "enter name",
+        "register": "Register",
+        "loginButton": "Click for login",
+        "logout": "Logout"
+    },
+    "validation": {
+        "mail": "Invalid email",
+        "required": "Required",
+        "maxChar": "max {max} character",
+        "password": "at least 8 char 1 uppercase character  1 special char"
+    },
+    "admin": {
+        "title": "Admin Actions",
+        "removeProductTitle": "Ürünü Sil?",
+        "removeProductSubtitle": "Bu işlemi geri alabilirsiniz",
+        "removeButton": "Remove this product",
+        "reactiveButton": "Reactive Product"
+    },
+    "profile": {
+        "updateTitle": "Update Your Details",
+        "wait": "Please wait..."
+    },
+    "comments": {
+        "title": "Comments",
+        "noComment": "No comment yet",
+        "commentShared": "Your comment has been shared",
+        "newCommentTitle": "Share your comment",
+        "pleaseWait": "Please Wait..",
+        "enterCommentPlaceholder": "Enter comment",
+        "submit": "Submit"
     }
+
 }

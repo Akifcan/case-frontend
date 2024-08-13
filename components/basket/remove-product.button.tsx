@@ -6,10 +6,12 @@ import fetcher from '@/store/fetcher'
 import { queryClient } from '@/store/redux.provider'
 import { useUser } from '@/hooks/user.hook'
 import toast from 'react-hot-toast'
+import { useTranslations } from 'next-intl'
 
 export default function RemoveProductButton({ productId }: Readonly<{ productId: number }>) {
   const [isOpen, setOpen] = useState(false)
   const { currency, visitorId } = useUser()
+  const t = useTranslations()
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (productId: number) => {
@@ -37,8 +39,8 @@ export default function RemoveProductButton({ productId }: Readonly<{ productId:
   return (
     <>
       <Dialog
-        title={'Sepetten Kaldır'}
-        subtitle={'Bu ürünü spetten kaldır'}
+        title={t('basket.confirmProduct')}
+        subtitle={t('basket.confirmProductDesc')}
         isOpen={isOpen}
         onClose={handleConfirm}
       />
@@ -48,7 +50,7 @@ export default function RemoveProductButton({ productId }: Readonly<{ productId:
           e.stopPropagation()
           setOpen(true)
         }}
-        aria-label="Kaldırmak için tıklayın"
+        aria-label={t('basket.confirmAria')}
         className="ml-auto align-self-center ghost-button cursor-pointer"
       >
         <RemoveIcon />

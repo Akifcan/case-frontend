@@ -4,9 +4,11 @@ import { useQuery } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import { useUser } from '@/hooks/user.hook'
 import { Link } from '@/i18n.config'
+import { useTranslations } from 'next-intl'
 
 export default function BasketButton() {
   const { currency, visitorId } = useUser()
+  const t = useTranslations('basket')
 
   const { data } = useQuery({
     queryKey: ['total-basket-item'],
@@ -26,13 +28,13 @@ export default function BasketButton() {
     <Link href={'/basket'} data-testid="basket-link-div">
       <div
         className={styles['basket-button']}
-        title={data?.totalItem ? `There are ${data.totalItem} in the basket` : 'No item in this basket'}
-        aria-label={data?.totalItem ? `There are ${data.totalItem} in the basket` : 'No item in this basket'}
+        title={data?.totalItem ? t('totalCount', { count: data.totalItem }) : t('noItem')}
+        aria-label={data?.totalItem ? t('totalCount', { count: data.totalItem }) : t('noItem')}
       >
         {data && data.totalItem > 0 && (
           <div
             data-testid="basket-count-div"
-            aria-label={`There are ${data.totalItem} in the basket`}
+            aria-label={t('totalCount', { count: data.totalItem })}
             className={styles['basket-button-badge']}
           >
             {data.totalItem}

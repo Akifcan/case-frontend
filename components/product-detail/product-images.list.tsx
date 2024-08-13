@@ -41,7 +41,6 @@ export default function ProductImagesList({ product }: Readonly<{ product: Produ
         <Image
           priority={true}
           fill
-          key={Math.random()}
           sizes={'100%'}
           src={thumbnail?.src ?? product.images[0].src}
           alt={thumbnail?.altTag ?? product.images[0].src}

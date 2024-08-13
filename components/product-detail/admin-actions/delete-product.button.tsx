@@ -5,10 +5,12 @@ import { ProductProps } from '@/components/product/product.types'
 import { useMutation } from '@tanstack/react-query'
 import fetcher from '@/store/fetcher'
 import toast from 'react-hot-toast'
+import { useTranslations } from 'next-intl'
 
 export default function DeleteProductButton({ product }: Readonly<{ product: ProductProps }>) {
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [isProductDeleted, setProductDeleted] = useState(false)
+  const t = useTranslations()
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
@@ -21,7 +23,7 @@ export default function DeleteProductButton({ product }: Readonly<{ product: Pro
       setProductDeleted((prev) => !prev)
     },
     onError: () => {
-      toast('Beklenmedik bir hata oluştu', { position: 'top-right' })
+      toast(t('common.error'), { position: 'top-right' })
     },
   })
 
@@ -37,15 +39,15 @@ export default function DeleteProductButton({ product }: Readonly<{ product: Pro
       <Dialog
         isOpen={isDeleteDialogOpen}
         onClose={handleClose}
-        title="Ürünü Sil?"
-        subtitle="Bu işlemi geri alabilirsiniz"
+        title={t('admin.removeProductTitle')}
+        subtitle={t('admin.removeProductSubtitle')}
       />
       <button
         disabled={isPending}
         onClick={() => setDeleteDialogOpen(true)}
         className="p-half flex row align-items-center justify-content-center"
       >
-        <DeleteIcon /> {!isProductDeleted ? 'Remove this product' : 'Reactive Product'}
+        <DeleteIcon /> {!isProductDeleted ? t('admin.removeButton') : t('admin.reactiveButton')}
       </button>
     </>
   )

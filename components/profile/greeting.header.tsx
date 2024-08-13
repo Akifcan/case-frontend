@@ -1,13 +1,17 @@
 import { useUser } from '@/hooks/user.hook'
+import { useTranslations } from 'next-intl'
 
 export default function GreetingHeader() {
   const { user, logout } = useUser()
+  const t = useTranslations()
 
   return (
     <>
-      <h2>Welcome, {user?.name}</h2>
+      <h2>
+        {t('common.welcome')}, {user?.name}
+      </h2>
       <button onClick={logout} className="p-half" style={{ width: 'max-content' }}>
-        Logout
+        {t('auth.logout')}
       </button>
     </>
   )

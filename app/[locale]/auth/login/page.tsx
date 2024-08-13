@@ -8,16 +8,21 @@ import Alert from '@/components/alert/alert'
 import Cookies from 'js-cookie'
 import { LoginForm } from '@/components/auth/auth.types'
 import { queryClient } from '@/store/redux.provider'
+import { useTranslations } from 'next-intl'
 
 export default function Login() {
   const router = useRouter()
+  const t = useTranslations()
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required').max(100, 'max 100 character'),
+    email: Yup.string()
+      .email(t('validation.mail'))
+      .required(t('validation.required'))
+      .max(100, t('validation.maxChar', { max: 100 })),
     password: Yup.string()
-      .required('Required')
-      .matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/, 'Wrong password regex')
-      .max(100, 'max 100 character'),
+      .required(t('validation.required'))
+      .matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/, t('validation.password'))
+      .max(100, t('validation.maxChar', { max: 100 })),
   })
 
   const { mutate, isPending, data } = useMutation({
@@ -53,13 +58,13 @@ export default function Login() {
     >
       {({ errors, touched }) => (
         <Form className="flex column mt-2">
-          <h1>Login</h1>
-          {isPending && <p>Lütfen Bekleyin</p>}
+          <h1>{t('auth.loginTitle')}</h1>
+          {isPending && <p>{t('wait')}</p>}
           {data?.error_code && <Alert type="info" message={data.message || 'Error'} />}
           <Field
             name="email"
             type="email"
-            placeholder="enter email"
+            placeholder={t('auth.emailPlaceholder')}
             className="p-half"
             data-testid="login-email-input"
           />
@@ -67,15 +72,15 @@ export default function Login() {
           <Field
             name="password"
             type="password"
-            placeholder="enter password"
+            placeholder={t('auth.passwordPlaceholder')}
             className="p-half"
             data-testid="login-password-input"
           />
           {errors.password && touched.password ? <div>{errors.password}</div> : null}
           <button disabled={isPending} type="submit" className="p-half" data-testid="login-submit-button">
-            Submit
+            {t('auth.submit')}
           </button>
-          <Link href={'/auth/register'}>Click for register</Link>
+          <Link href={'/auth/register'}>{t('auth.registerButton')}</Link>
         </Form>
       )}
     </Formik>

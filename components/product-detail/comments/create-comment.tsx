@@ -6,10 +6,15 @@ import { CommentForm } from './comment.types'
 import Alert from '@/components/alert/alert'
 import toast from 'react-hot-toast'
 import { queryClient } from '@/store/redux.provider'
+import { useTranslations } from 'next-intl'
 
 export default function CreateComment({ productId }: Readonly<{ productId: number }>) {
+  const t = useTranslations()
+
   const CommentSchema = Yup.object().shape({
-    comment: Yup.string().required('Required').max(100, 'max 100 character'),
+    comment: Yup.string()
+      .required(t('validation.required'))
+      .max(100, t('validation.maxChar', { max: 100 })),
   })
 
   const { mutate, isPending, data, error } = useMutation({
@@ -22,7 +27,7 @@ export default function CreateComment({ productId }: Readonly<{ productId: numbe
       })
     },
     onSuccess: () => {
-      toast('Yorumunuz paylaşıldı', { position: 'top-right' })
+      toast(t('comments.commentShared'), { position: 'top-right' })
       queryClient.fetchQuery({ queryKey: ['comment-list'] })
     },
   })
@@ -33,25 +38,26 @@ export default function CreateComment({ productId }: Readonly<{ productId: numbe
         comment: '',
       }}
       validationSchema={CommentSchema}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         mutate(values)
+        resetForm()
       }}
     >
       {({ errors, touched }) => (
         <Form className="flex column">
-          <p>Share your comment</p>
-          {isPending && <p>Lütfen Bekleyin</p>}
-          {error && <Alert type="info" message={'Error'} />}
+          <p>{t('comments.newCommentTitle')}</p>
+          {isPending && <p>{t('comments.pleaseWait')}</p>}
+          {error && <Alert type="info" message={t('common.error')} />}
           <Field
             name="comment"
             type="text"
-            placeholder="enter comment"
+            placeholder={t('comments.enterCommentPlaceholder')}
             className="p-half"
             data-testid="comment-input"
           />
           {errors.comment && touched.comment ? <div>{errors.comment}</div> : null}
           <button disabled={isPending} type="submit" className="p-half" data-testid="login-submit-button">
-            {!isPending ? 'Submit' : 'Plese wait'}
+            {!isPending ? t('comments.submit') : t('comments.pleaseWait')}
           </button>
         </Form>
       )}

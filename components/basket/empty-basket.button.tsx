@@ -5,10 +5,12 @@ import fetcher from '@/store/fetcher'
 import toast from 'react-hot-toast'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '@/store/redux.provider'
+import { useTranslations } from 'next-intl'
 
 export default function EmptyBasket() {
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const { visitorId } = useUser()
+  const t = useTranslations()
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
@@ -26,7 +28,7 @@ export default function EmptyBasket() {
       }
     },
     onError: () => {
-      toast('Beklenmedik bir hata oluştu', { position: 'top-right' })
+      toast(t('common.error'), { position: 'top-right' })
     },
   })
 
@@ -43,8 +45,8 @@ export default function EmptyBasket() {
       <Dialog
         isOpen={isDeleteDialogOpen}
         onClose={handleClose}
-        title="Sepeti temizle"
-        subtitle="tüm sepeti temizlemek istiyor musunuz?"
+        title={t('basket.confirmRemove')}
+        subtitle={t('basket.confirmRemoveDesc')}
       />
       <button
         disabled={isPending}
@@ -53,7 +55,7 @@ export default function EmptyBasket() {
           setDeleteDialogOpen(true)
         }}
       >
-        Empty this basket
+        {t('basket.emptyButton')}
       </button>
     </>
   )

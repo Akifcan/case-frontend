@@ -1,4 +1,8 @@
 {
+    "common": {
+        "error": "Beklenmedik bir hata oluştu",
+        "welcome": "Hoş geldin"
+    },
     "menu": {
         "home": "Ana Sayfa",
         "login": "Giriş Yapın"
@@ -10,7 +14,18 @@
         "error": "Beklenmedik bir hata oluştu lütfen tekrar deneyin",
         "quantity": "Adet:",
         "unitPrice": "Adet Fiyatı:",
-        "emptyBasket": "Sepetiniz şu an boş"
+        "emptyBasket": "Sepetiniz şu an boş",
+
+        "confirmRemove": "Kaldırmayı onayla",
+        "confirmRemoveDesc": "tüm sepeti temizlemek istiyor musunuz?",
+        "emptyButton": "Bu sepeti boşaltın",
+
+        "confirmProduct": "Sepetten Kaldır",
+        "confirmProductDesc": "Bu ürünü sepetten kaldır",
+        "confirmAria": "Kaldırmak için tıklayın",
+
+        "noItem": "Bu sepette ürün yok",
+        "totalCount": "Sepette {count} adet ürün var"
     },
     "product": {
         "loading": "Ürünler yükleniyor...",
@@ -19,5 +34,45 @@
         "buyNowButton": "Şimdi satın al",
         "addToBasket": "Sepete ekle",
         "wait": "Lütfen Bekleyin"
+    },
+    "auth": {
+        "loginTitle": "Giriş yapın",
+        "wait": "Lütfen Bekleyin",
+        "submit": "Gönder",
+        "registerButton": "Kayıt olmak için tıklayın",
+        "emailPlaceholder": "e-posta girin",
+        "passwordPlaceholder": "şifre girin",
+
+        "namePlaceholder": "isim girin",
+        "register": "Kayıt Olun",
+        "loginButton": "Kayıt olmak için tıklayın",
+        "logout": "Çıkış yap"
+
+    },
+    "validation": {
+        "mail": "Hatalı e-posta formatı",
+        "required": "Zorunlu",
+        "maxChar": "en fazla {max} karakter",
+        "password": "en az 8 karakter 1 büyük harf  1 özel karakter"
+    },
+    "admin": {
+        "title": "Admin İşlemleri",
+        "removeProductTitle": "Ürünü Sil?",
+        "removeProductSubtitle": "Bu işlemi geri alabilirsiniz",
+        "removeButton": "Bu ürünü kaldırın",
+        "reactiveButton": "Aktif et"
+    },
+    "profile": {
+        "updateTitle": "Hesap Bilgilerini Güncelle",
+        "wait": "Lütfen bekleyin..."
+    },
+    "comments": {
+        "title": "Yorumlar",
+        "noComment": "Henüz bir yorum yok",
+        "commentShared": "Yorumunuz paylaşıldı",
+        "newCommentTitle": "Yorumunuzu Paylaşın",
+        "pleaseWait": "Lütfen bekelyin",
+        "enterCommentPlaceholder": "Yorumunuz...",
+        "submit": "Submit"
     }
 }

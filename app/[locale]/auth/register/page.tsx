@@ -8,15 +8,23 @@ import Cookies from 'js-cookie'
 import Alert from '@/components/alert/alert'
 import { RegisterForm } from '@/components/auth/auth.types'
 import { queryClient } from '@/store/redux.provider'
+import { useTranslations } from 'next-intl'
 
 export default function Register() {
+  const t = useTranslations()
+
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required').max(100, 'max 100 character'),
+    email: Yup.string()
+      .email(t('validation.mail'))
+      .required(t('validation.required'))
+      .max(100, t('validation.maxChar', { max: 100 })),
     password: Yup.string()
+      .required(t('validation.required'))
+      .matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/, t('validation.password'))
+      .max(100, t('validation.maxChar', { max: 100 })),
+    name: Yup.string()
       .required('Required')
-      .matches(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/, 'Wrong password regex')
-      .max(100, 'max 100 character'),
-    name: Yup.string().required('Required').max(100, 'max 100 character'),
+      .max(100, t('validation.maxChar', { max: 100 })),
   })
 
   const router = useRouter()
@@ -56,13 +64,13 @@ export default function Register() {
     >
       {({ errors, touched }) => (
         <Form className="flex column mt-2">
-          <h1>Register</h1>
+          <h1>{t('auth.register')}</h1>
           {isPending && <p>Lütfen Bekleyin</p>}
           {data?.error_code && <Alert type="info" message={data.message || 'Error'} />}
           <Field
             name="name"
             type="text"
-            placeholder="enter name"
+            placeholder={t('auth.namePlaceholder')}
             className="p-half"
             data-testid="register-name-input"
           />
@@ -70,7 +78,7 @@ export default function Register() {
           <Field
             name="email"
             type="email"
-            placeholder="enter email"
+            placeholder={t('auth.emailPlaceholder')}
             className="p-half"
             data-testid="register-email-input"
           />
@@ -78,15 +86,15 @@ export default function Register() {
           <Field
             name="password"
             type="password"
-            placeholder="enter password"
+            placeholder={t('auth.passwordPlaceholder')}
             className="p-half"
             data-testid="register-password-input"
           />
           {errors.password && touched.password ? <div>{errors.password}</div> : null}
           <button disabled={isPending} type="submit" className="p-half" data-testid="register-submit-button">
-            Submit
+            {t('auth.submit')}
           </button>
-          <Link href={'/auth/login'}>Click for login</Link>
+          <Link href={'/auth/login'}>{t('auth.loginButton')}</Link>
         </Form>
       )}
     </Formik>

@@ -59,7 +59,7 @@ export default function Login() {
       {({ errors, touched }) => (
         <Form className="flex column mt-2">
           <h1>{t('auth.loginTitle')}</h1>
-          {isPending && <p>{t('wait')}</p>}
+          {isPending && <p>{t('auth.wait')}</p>}
           {data?.error_code && <Alert type="info" message={data.message || 'Error'} />}
           <Field
             name="email"

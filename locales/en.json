@@ -65,8 +65,8 @@
     },
     "admin": {
         "title": "Admin Actions",
-        "removeProductTitle": "Ürünü Sil?",
-        "removeProductSubtitle": "Bu işlemi geri alabilirsiniz",
+        "removeProductTitle": "Remove Product",
+        "removeProductSubtitle": "Are you sure?",
         "removeButton": "Remove this product",
         "reactiveButton": "Reactive Product"
     },

@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import AdminActions from './admin-actions/admin-actions'
+import CommentList from './comments/comment-list'
 
 export default function ProductInfo({ product }: Readonly<{ product: ProductProps }>) {
   const { visitorId, currency } = useUser()
@@ -85,6 +86,7 @@ export default function ProductInfo({ product }: Readonly<{ product: ProductProp
       {mutation.isPending && <p>{t('wait')}</p>}
 
       {user?.role === 'Admin' && <AdminActions product={product} />}
+      <CommentList productId={product.id} />
     </div>
   )
 }

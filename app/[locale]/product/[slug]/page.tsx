@@ -23,7 +23,6 @@ export default function Page() {
     queryFn: async () => {
       return await fetcher<{ product?: ProductProps; error_code: string }>(`/product/${slug}`, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
         body: {
           visitorId,
           currency: userCurrency,

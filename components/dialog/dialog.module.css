@@ -7,6 +7,7 @@
   padding: 1rem;
   border-radius: 8px;
   width: min(400px, 90%);
+  z-index: 999;
 }
 
 .confirm-button {

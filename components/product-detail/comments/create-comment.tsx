@@ -51,7 +51,7 @@ export default function CreateComment({ productId }: Readonly<{ productId: numbe
           />
           {errors.comment && touched.comment ? <div>{errors.comment}</div> : null}
           <button disabled={isPending} type="submit" className="p-half" data-testid="login-submit-button">
-            Submit
+            {!isPending ? 'Submit' : 'Plese wait'}
           </button>
         </Form>
       )}

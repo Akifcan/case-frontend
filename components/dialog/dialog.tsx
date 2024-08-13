@@ -12,10 +12,22 @@ export default function Dialog({
       <h2>{title}</h2>
       <p>{subtitle}</p>
       <form method="dialog" className="flex wrap align-items-center">
-        <button className={styles['confirm-button']} onClick={() => onClose(false)}>
+        <button
+          className={styles['confirm-button']}
+          onClick={(e) => {
+            e.stopPropagation()
+            onClose(false)
+          }}
+        >
           Cancel
         </button>
-        <button className={styles['cancel-button']} onClick={() => onClose(true)}>
+        <button
+          className={styles['cancel-button']}
+          onClick={(e) => {
+            e.stopPropagation()
+            onClose(true)
+          }}
+        >
           Confirm
         </button>
       </form>

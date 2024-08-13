@@ -1,15 +1,17 @@
 import styles from './basket.module.css'
 import Image from 'next/image'
 import { BasketProps } from './basket.types'
-import { Link } from '@/i18n.config'
+import { useRouter } from '@/i18n.config'
 import { useTranslations } from 'next-intl'
+import RemoveProductButton from './remove-product.button'
 
 export default function BasketCard({ basket }: Readonly<{ basket: BasketProps }>) {
   const t = useTranslations('basket')
+  const router = useRouter()
 
   return (
-    <Link
-      href={`/product/${basket.product.slug}`}
+    <div
+      onClick={() => router.push(`/product/${basket.product.slug}`)}
       className="text-decoration-none"
       data-testid="basket-item-div"
     >
@@ -38,7 +40,8 @@ export default function BasketCard({ basket }: Readonly<{ basket: BasketProps }>
             </li>
           </ul>
         </div>
+        <RemoveProductButton productId={basket.basket.product.id} />
       </div>
-    </Link>
+    </div>
   )
 }

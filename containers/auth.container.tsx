@@ -30,7 +30,6 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
       dispatch(setLoggedIn(false))
       return
     }
-    console.log('CALL')
     refetch()
   }, [])
 

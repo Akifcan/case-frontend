@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.align-self-center {
+  align-self: center;
+}
+
 .justify-content-center {
   justify-content: center;
 }
@@ -69,4 +73,17 @@
   .grid {
     grid-template-columns: 1fr;
   }
+}
+
+.ml-auto {
+  margin-inline-start: auto;
+}
+
+.ghost-button {
+  background-color: transparent;
+  border: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

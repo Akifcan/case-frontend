@@ -87,3 +87,7 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.m-h30 {
+  min-height: 30px;
+}

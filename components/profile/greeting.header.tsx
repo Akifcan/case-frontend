@@ -10,7 +10,7 @@ export default function GreetingHeader() {
       <h2>
         {t('common.welcome')}, {user?.name}
       </h2>
-      <button onClick={logout} className="p-half" style={{ width: 'max-content' }}>
+      <button onClick={logout} className="p-half m-h30" style={{ width: 'max-content' }}>
         {t('auth.logout')}
       </button>
     </>

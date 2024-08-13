@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from './dialog.module.css'
+import { useTranslations } from 'next-intl'
 
 export default function Dialog({
   title,
@@ -7,6 +8,8 @@ export default function Dialog({
   isOpen,
   onClose,
 }: Readonly<{ title: string; subtitle: string; isOpen: boolean; onClose: (confirmed: boolean) => void }>) {
+  const t = useTranslations('common')
+
   return isOpen ? (
     <dialog open className={[styles['dialog'], 'flex column'].join(' ')} style={{ gap: '.5rem' }}>
       <h2>{title}</h2>
@@ -19,7 +22,7 @@ export default function Dialog({
             onClose(false)
           }}
         >
-          Cancel
+          {t('confirmButton')}
         </button>
         <button
           className={styles['cancel-button']}
@@ -28,7 +31,7 @@ export default function Dialog({
             onClose(true)
           }}
         >
-          Confirm
+          {t('cancelButton')}
         </button>
       </form>
     </dialog>

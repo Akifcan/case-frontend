@@ -2,7 +2,10 @@
     "common": {
         "error": "An Unexcepted error occured",
 
-        "welcome": "Welcome"
+        "welcome": "Welcome",
+
+        "confirmButton": "Confirm",
+        "cancelButton": "Cancel"
     },
     "menu": {
         "home": "Home",

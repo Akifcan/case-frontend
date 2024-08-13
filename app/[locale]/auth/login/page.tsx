@@ -77,7 +77,12 @@ export default function Login() {
             data-testid="login-password-input"
           />
           {errors.password && touched.password ? <div>{errors.password}</div> : null}
-          <button disabled={isPending} type="submit" className="p-half" data-testid="login-submit-button">
+          <button
+            disabled={isPending}
+            type="submit"
+            className="p-half m-h30"
+            data-testid="login-submit-button"
+          >
             {t('auth.submit')}
           </button>
           <Link href={'/auth/register'}>{t('auth.registerButton')}</Link>

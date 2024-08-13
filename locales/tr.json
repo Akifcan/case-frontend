@@ -1,7 +1,10 @@
 {
     "common": {
         "error": "Beklenmedik bir hata oluştu",
-        "welcome": "Hoş geldin"
+        "welcome": "Hoş geldin",
+
+        "confirmButton": "Onayla",
+        "cancelButton": "İptal Et"
     },
     "menu": {
         "home": "Ana Sayfa",

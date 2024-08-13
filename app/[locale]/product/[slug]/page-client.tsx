@@ -11,6 +11,7 @@ import Alert from '@/components/alert/alert'
 import { useEffect } from 'react'
 import { useUser } from '@/hooks/user.hook'
 import { useTranslations } from 'next-intl'
+import Spinner from '@/components/loader/spinner'
 
 export default function ClientPage() {
   const currency = useAppSelector((state) => state.currency.currency)
@@ -18,7 +19,7 @@ export default function ClientPage() {
   const { visitorId, currency: userCurrency } = useUser()
   const t = useTranslations('product')
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch, isFetching } = useQuery({
     queryKey: ['product'],
     queryFn: async () => {
       return await fetcher<{ product?: ProductProps; error_code: string }>(`/product/${slug}`, {
@@ -35,16 +36,29 @@ export default function ClientPage() {
     refetch()
   }, [currency])
 
-  return (
-    <div className={['mt-2 flex wrap', styles['product-wrapper']].join(' ')}>
-      {data?.error_code && <Alert type="error" message={t('error') + ':' + data.error_code} />}
-      {isLoading && <p>{t('loading')}</p>}
-      {data?.product && (
-        <>
-          <ProductImagesList product={data.product} />
-          <ProductInfo product={data.product} />
-        </>
-      )}
-    </div>
-  )
+  if (isLoading || isFetching) {
+    return (
+      <>
+        <p>{t('loading')}</p>
+        <Spinner />
+      </>
+    )
+  }
+
+  if (data?.error_code) {
+    return <Alert type="error" message={t('error') + ':' + data.error_code} />
+  }
+
+  if (data?.product) {
+    return (
+      <div key={data.product.id} className={['mt-2 flex wrap', styles['product-wrapper']].join(' ')}>
+        {data?.product && (
+          <>
+            <ProductImagesList product={data.product} />
+            <ProductInfo product={data.product} />
+          </>
+        )}
+      </div>
+    )
+  }
 }

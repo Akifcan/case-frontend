@@ -23,7 +23,7 @@ export default function AdminGuardContainer({ children }: Readonly<{ children: R
   }
 
   if (user.role !== 'Admin') {
-    return <p>{t('auth.notAuthorized')}</p>
+    return <p data-testid="not-authorized-label">{t('auth.notAuthorized')}</p>
   }
 
   return children

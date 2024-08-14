@@ -95,3 +95,9 @@
 .m-h30 {
   min-height: 30px;
 }
+
+.select-all {
+  user-select: all;
+  -webkit-user-select: all;
+  word-break: break-all;
+}

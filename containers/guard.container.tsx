@@ -18,5 +18,5 @@ export default function GuardContainer({ children }: Readonly<{ children: ReactN
     }
   }, [loggedIn])
 
-  return user ? <>{children}</> : <p>{t('auth.wait')}</p>
+  return user ? <>{children}</> : <p data-testid="not-authorized-label">{t('auth.wait')}</p>
 }

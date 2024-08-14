@@ -1,5 +1,6 @@
 'use client'
 import RemoveIcon from '@/components/basket/icons/remove.icon'
+import { CategoryProps } from '@/components/home/categories/category.types'
 import PlusIcon from '@/components/product/icons/plus.icon'
 import {
   ProductCurrencyDto,
@@ -10,18 +11,53 @@ import {
   ProductInfoForm,
 } from '@/components/product/product.types'
 import AdminGuardContainer from '@/containers/admin-guard.container'
+import { useRouter } from '@/i18n.config'
+import fetcher from '@/store/fetcher'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
 import { FormEvent, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function NewProduct() {
   const t = useTranslations()
   const [images, setImages] = useState<ProductImageForm[]>([{ id: Math.random(), src: '', altTag: '' }])
+  const router = useRouter()
 
   const [pricing] = useState<ProductCurrencyForm[]>([
     { id: Math.random(), currency: 'tl', price: '' },
     { id: Math.random(), currency: 'dollar', price: '' },
     { id: Math.random(), currency: 'euro', price: '' },
   ])
+
+  const { data: categories, isLoading: categoriesLoading } = useQuery({
+    queryKey: ['categories-selection'],
+    queryFn: async () => {
+      return await fetcher<CategoryProps[]>('/category', {
+        method: 'GET',
+      })
+    },
+  })
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (form: {
+      categoryId: number
+      images: ProductImageDto[]
+      pricing: ProductCurrencyDto[]
+      info: ProductInfoDto[]
+    }) => {
+      return await fetcher<{ message: string; slug: string }>(`/product/new-product`, {
+        method: 'POST',
+        body: form,
+      })
+    },
+    onSuccess: (data) => {
+      toast(data.message, { position: 'top-right' })
+      router.push(`/product/${data.slug}`)
+    },
+    onError: () => {
+      toast(t('common.error'), { position: 'top-right' })
+    },
+  })
 
   const [info] = useState<ProductInfoForm[]>([
     {
@@ -66,11 +102,30 @@ export default function NewProduct() {
       const description = x.querySelector("[name='description']")?.value
       info.push({ name, slug, description, language: x.dataset.language })
     })
+
+    const categoryId = document.querySelector("[name='category'") as any
+
+    mutate({ categoryId: Number(categoryId.value), images, pricing, info })
   }
 
   return (
     <AdminGuardContainer>
       <form onSubmit={handleSubmit} className="mt-2 flex column">
+        {!categoriesLoading ? (
+          <label className="flex column">
+            {t('product.categoryTitle')}
+            <select className="p-half m-h30" name="category">
+              {categories?.map((category) => (
+                <option value={category.category.id} key={category.category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : (
+          <p>{t('product.categoriesLoading')}</p>
+        )}
+
         <fieldset className="p-half flex column images">
           <legend className="p-half">{t('product.imagesTitle')}</legend>
           <h1>ONLY UNSPLASH IMAGES</h1>
@@ -152,8 +207,8 @@ export default function NewProduct() {
           </div>
         </fieldset>
 
-        <button type="submit" className="p-half">
-          {t('comments.submit')}
+        <button type="submit" className="p-half" disabled={isPending}>
+          {!isPending ? <span>{t('comments.submit')}</span> : <p>{t('product.wait')}</p>}
         </button>
       </form>
     </AdminGuardContainer>

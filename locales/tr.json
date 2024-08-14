@@ -49,7 +49,10 @@
         "newImageButton": "Yeni Resim Ekle",
         "remove": "Bu Resmi Kaldır",
         "imagesTitle": "Resimler",
-        "priceIn": "{price} Fiyatlandırması"
+        "priceIn": "{price} Fiyatlandırması",
+
+        "categoryTitle": "Kategori",
+        "categoriesLoading": "Kategoriler Yükleniyor..."
     },
     "auth": {
         "loginTitle": "Giriş yapın",

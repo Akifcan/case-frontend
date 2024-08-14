@@ -50,7 +50,10 @@
         "newImageButton": "Add new image",
         "remove": "Remove this image",
         "imagesTitle": "Images",
-        "priceIn": "Price in {price}"
+        "priceIn": "Price in {price}",
+
+        "categoryTitle": "Category",
+        "categoriesLoading": "Categories Loading..."
     },
     "auth": {
         "wait": "Please wait",

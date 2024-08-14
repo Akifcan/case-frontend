@@ -3,7 +3,7 @@ import { useAppSelector } from '@/store/store'
 import { useTranslations } from 'next-intl'
 import { ReactNode, useEffect } from 'react'
 
-export default function GuardContainer({ children }: Readonly<{ children: ReactNode }>) {
+export default function AdminGuardContainer({ children }: Readonly<{ children: ReactNode }>) {
   const user = useAppSelector((state) => state.user.user)
   const loggedIn = useAppSelector((state) => state.user.loggedIn)
   const router = useRouter()
@@ -18,5 +18,13 @@ export default function GuardContainer({ children }: Readonly<{ children: ReactN
     }
   }, [loggedIn])
 
-  return user ? <>{children}</> : <p>{t('auth.wait')}</p>
+  if (!user) {
+    return <p>{t('auth.wait')}</p>
+  }
+
+  if (user.role !== 'Admin') {
+    return <p>{t('auth.notAuthorized')}</p>
+  }
+
+  return children
 }

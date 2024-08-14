@@ -9,6 +9,7 @@ import {
   ProductInfoDto,
   ProductInfoForm,
 } from '@/components/product/product.types'
+import AdminGuardContainer from '@/containers/admin-guard.container'
 import { useTranslations } from 'next-intl'
 import { FormEvent, useState } from 'react'
 
@@ -68,86 +69,93 @@ export default function NewProduct() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-2 flex column">
-      <fieldset className="p-half flex column images">
-        <legend className="p-half">{t('product.imagesTitle')}</legend>
-        <h1>ONLY UNSPLASH IMAGES</h1>
-        {images.map((image, index) => (
-          <div className="flex column image-item" key={image.id}>
-            <label className="flex column">
-              Image Src
-              <input required name="src" placeholder={`Src ${index + 1}`} className="p-half" type="text" />
-            </label>
-            <label className="flex column">
-              Image Alt Tag
-              <input required name="alt" placeholder={`Alt ${index + 1}`} className="p-half" type="text" />
-            </label>
-            {index !== 0 && (
-              <button
-                onClick={() => {
-                  setImages((prev) => {
-                    const img = prev.filter((x) => x.id !== image.id)
-                    return img
-                  })
-                }}
-                type="button"
-                className="p-half align-self-start flex wrap align-items-center"
-              >
-                <RemoveIcon />
-                {t('product.remove')}
-              </button>
-            )}
-            <hr />
-          </div>
-        ))}
-        <button
-          type="button"
-          onClick={() => setImages((prev) => [...prev, { id: Math.random(), src: '', altTag: '' }])}
-          className="p-half align-self-start flex wrap align-items-center"
-        >
-          <PlusIcon />
-          {t('product.newImageButton')}
-        </button>
-      </fieldset>
-
-      <fieldset className="p-half flex column pricing">
-        <legend className="p-half">{t('product.pricing')}</legend>
-        {pricing.map((price) => {
-          return (
-            <label key={price.id} className="flex column price-item">
-              <input
-                required
-                type="number"
-                data-currency={price.currency}
-                name="price"
-                placeholder={t('product.priceIn', { price: price.currency }).toUpperCase()}
-                className="p-half"
-              />
+    <AdminGuardContainer>
+      <form onSubmit={handleSubmit} className="mt-2 flex column">
+        <fieldset className="p-half flex column images">
+          <legend className="p-half">{t('product.imagesTitle')}</legend>
+          <h1>ONLY UNSPLASH IMAGES</h1>
+          {images.map((image, index) => (
+            <div className="flex column image-item" key={image.id}>
+              <label className="flex column">
+                Image Src
+                <input required name="src" placeholder={`Src ${index + 1}`} className="p-half" type="text" />
+              </label>
+              <label className="flex column">
+                Image Alt Tag
+                <input required name="alt" placeholder={`Alt ${index + 1}`} className="p-half" type="text" />
+              </label>
+              {index !== 0 && (
+                <button
+                  onClick={() => {
+                    setImages((prev) => {
+                      const img = prev.filter((x) => x.id !== image.id)
+                      return img
+                    })
+                  }}
+                  type="button"
+                  className="p-half align-self-start flex wrap align-items-center"
+                >
+                  <RemoveIcon />
+                  {t('product.remove')}
+                </button>
+              )}
               <hr />
-            </label>
-          )
-        })}
-      </fieldset>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={() => setImages((prev) => [...prev, { id: Math.random(), src: '', altTag: '' }])}
+            className="p-half align-self-start flex wrap align-items-center"
+          >
+            <PlusIcon />
+            {t('product.newImageButton')}
+          </button>
+        </fieldset>
 
-      <fieldset className="p-half flex column info">
-        <legend className="p-half">{t('product.info')}</legend>
-        <div className="flex column">
-          {info.map((i) => {
+        <fieldset className="p-half flex column pricing">
+          <legend className="p-half">{t('product.pricing')}</legend>
+          {pricing.map((price) => {
             return (
-              <label key={i.id} className="flex column info-item" data-language={i.language}>
-                <h3>{t('product.infoIn', { language: i.language })} </h3>
-                <input type="text" placeholder="Name" required name="name" className="p-half" />
-                <input type="text" placeholder="Slug" required name="slug" className="p-half" />
-                <textarea className="p-half" required placeholder="description" name="description"></textarea>
+              <label key={price.id} className="flex column price-item">
+                <input
+                  required
+                  type="number"
+                  data-currency={price.currency}
+                  name="price"
+                  placeholder={t('product.priceIn', { price: price.currency }).toUpperCase()}
+                  className="p-half"
+                />
+                <hr />
               </label>
             )
           })}
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <button type="submit" className="p-half">
-        {t('comments.submit')}
-      </button>
-    </form>
+        <fieldset className="p-half flex column info">
+          <legend className="p-half">{t('product.info')}</legend>
+          <div className="flex column">
+            {info.map((i) => {
+              return (
+                <label key={i.id} className="flex column info-item" data-language={i.language}>
+                  <h3>{t('product.infoIn', { language: i.language })} </h3>
+                  <input type="text" placeholder="Name" required name="name" className="p-half" />
+                  <input type="text" placeholder="Slug" required name="slug" className="p-half" />
+                  <textarea
+                    className="p-half"
+                    required
+                    placeholder="description"
+                    name="description"
+                  ></textarea>
+                </label>
+              )
+            })}
+          </div>
+        </fieldset>
+
+        <button type="submit" className="p-half">
+          {t('comments.submit')}
+        </button>
+      </form>
+    </AdminGuardContainer>
   )
 }

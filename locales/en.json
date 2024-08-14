@@ -63,7 +63,9 @@
         "namePlaceholder": "enter name",
         "register": "Register",
         "loginButton": "Click for login",
-        "logout": "Logout"
+        "logout": "Logout",
+
+        "notAuthorized": "Not authorized"
     },
     "validation": {
         "mail": "Invalid email",

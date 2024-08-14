@@ -55,6 +55,6 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
       <Toaster /> {children}
     </>
   ) : (
-    <p>Please wait...</p>
+    <p>{t('auth.wait')}</p>
   )
 }

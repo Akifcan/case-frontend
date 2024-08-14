@@ -62,7 +62,9 @@
         "namePlaceholder": "isim girin",
         "register": "Kayıt Olun",
         "loginButton": "Kayıt olmak için tıklayın",
-        "logout": "Çıkış yap"
+        "logout": "Çıkış yap",
+
+        "notAuthorized": "Yetkilendirilmedi"
 
     },
     "validation": {

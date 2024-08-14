@@ -14,6 +14,7 @@ import { useQueryParam } from '@/hooks/use-query-param.hook'
 import { useRouter } from '@/i18n.config'
 import { useUser } from '@/hooks/user.hook'
 import { useTranslations } from 'next-intl'
+import NewProductButton from '@/components/product/new-product.button'
 
 export default function Page() {
   const searchParams = useSearchParams()
@@ -52,6 +53,7 @@ export default function Page() {
     <main className="flex column mt-1" style={{ gap: '1rem' }}>
       <SearchInput />
       <Categories />
+      {user.user?.role === 'Admin' && <NewProductButton />}
       {error && <Alert type="error" message={t('common.error')} />}
       {isLoading && <p>{t('basket.loading')}</p>}
       {data && (

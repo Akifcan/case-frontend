@@ -44,6 +44,7 @@ export default function AuthContainer({ children }: Readonly<{ children: ReactNo
     if (!data?.user) {
       return
     }
+    console.log(data.user)
     toast(`${t('common.welcome')} ${data.user?.name}`, { position: 'top-right' })
     dispatch(setUser(data.user))
     dispatch(setLoggedIn(true))

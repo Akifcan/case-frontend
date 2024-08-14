@@ -42,7 +42,15 @@
         "buyNowButton": "Buy now",
         "addToBasket": "Add to basket",
         "wait": "Please wait",
-        "noProduct": "No product found"
+        "noProduct": "No product found",
+
+        "info": "Product Info",
+        "infoIn": "Info In {language} Language",
+        "pricing": "Pricing",
+        "newImageButton": "Add new image",
+        "remove": "Remove this image",
+        "imagesTitle": "Images",
+        "priceIn": "Price in {price}"
     },
     "auth": {
         "wait": "Please wait",

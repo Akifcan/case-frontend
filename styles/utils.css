@@ -21,6 +21,10 @@
   align-self: center;
 }
 
+.align-self-start {
+  align-self: flex-start;
+}
+
 .justify-content-center {
   justify-content: center;
 }

@@ -8,7 +8,7 @@ export default function ProfileButton() {
     <Link
       href="/profile"
       data-testid="go-to-profile-link"
-      className='flex align-items-center"'
+      className="flex align-items-center"
       style={{ textDecoration: 'none' }}
     >
       <span style={{ textDecoration: 'underline' }}>Go to profile - {user?.name}</span>

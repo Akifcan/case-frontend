@@ -41,7 +41,15 @@
         "buyNowButton": "Şimdi satın al",
         "addToBasket": "Sepete ekle",
         "wait": "Lütfen Bekleyin",
-        "noProduct": "Ürün Bulunmadı"
+        "noProduct": "Ürün Bulunmadı",
+
+        "info": "Ürün Bilgisi",
+        "infoIn": "Ürün Bilgisi {language} Dilinde",
+        "pricing": "Fiyatlandırma",
+        "newImageButton": "Yeni Resim Ekle",
+        "remove": "Bu Resmi Kaldır",
+        "imagesTitle": "Resimler",
+        "priceIn": "{price} Fiyatlandırması"
     },
     "auth": {
         "loginTitle": "Giriş yapın",

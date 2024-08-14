@@ -129,6 +129,17 @@ export default function NewProduct() {
         <fieldset className="p-half flex column images">
           <legend className="p-half">{t('product.imagesTitle')}</legend>
           <h1>ONLY UNSPLASH IMAGES</h1>
+          <p>Example Images: </p>
+          <p>
+            <b>
+              https://images.unsplash.com/photo-1720048171731-15b3d9d5473f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+            </b>
+          </p>
+          <p>
+            <b>
+              https://images.unsplash.com/photo-1719937206220-f7c76cc23d78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+            </b>
+          </p>
           {images.map((image, index) => (
             <div className="flex column image-item" key={image.id}>
               <label className="flex column">
